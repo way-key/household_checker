@@ -22,6 +22,8 @@
 - 自宅・もしくは空いた時間でパソコン、スマホを使用し日用(消耗)品の登録、レビューの確認、買い物リストの確認を行う。
 
 ## 設計書
+- ER図：https://app.diagrams.net/#G1i3HRh9dSC9GhUoiVxGYJlTiV3vFet8TQ
+- アプリケーション詳細設計：製作中
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1lMgn-YB082h1BeyOiEFCZu17jHR5n_gmbDjLGy31Ez0/edit#gid=0
