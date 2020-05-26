@@ -1,4 +1,5 @@
 class Users::ProductsController < ApplicationController
+  before_action :set_search
 
   def top
 
@@ -13,7 +14,8 @@ class Users::ProductsController < ApplicationController
   end
 
   def search
-
+    @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(5)
+    render "index"
   end
 
   def show
@@ -35,6 +37,11 @@ class Users::ProductsController < ApplicationController
   end
 
     private
+
+    def set_search
+      @genres = Genre.where(status: true)
+      @q = Product.ransack(params[:q])
+    end
 
     def product_params
       params.require(:product).permit(:genre_id, :name, :image, :introduction, :jan_code)
