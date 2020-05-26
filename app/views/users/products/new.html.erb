@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="seach-box">
+        <h3>商品検索</h3>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <h2>商品新規作成</h2>
+
+      <%= form_for [:users, @product] do |f| %>
+      <%= attachment_image_tag @product, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg", size: '300x200' %><br>
+        <%= f.attachment_field :image %><br>
+        <%= f.label :name, "商品名" %>
+        <%= f.text_field :name %><br>
+        <%= f.label :introduction, "商品説明" %>
+        <%= f.text_area :introduction %><br>
+        <%= f.label :genre_id, "ジャンル" %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :title, include_blank: '--選択してください--' %><br>
+        <%= f.label :jan_code, "JANコード" %>
+        <%= f.text_field :jan_code %><br>
+
+        <%= f.submit "新規作成", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

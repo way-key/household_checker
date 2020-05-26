@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="seach-box">
+        <h3>商品検索</h3>
+
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <h2>商品新規作成</h2>
+        <% @products.each do |product| %>
+          <span>
+          　<%= attachment_image_tag product, :image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100' %><br>
+            <%= product.name %><br>
+            <%= product.genre.title %><br>
+          </span>
+        <% end %>
+      <%= paginate @products, class: "paginate" %>
+    </div>
+  </div>
+</div>
