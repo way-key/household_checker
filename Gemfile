@@ -68,6 +68,9 @@ gem 'refile-mini_magick'
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
 gem 'faker'
 gem 'font-awesome-sass', '~> 5.4.1'
 gem 'ransack'
