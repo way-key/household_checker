@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="row">
+    <h2>ジャンル編集</h2>
+  </div>
+
+  <div class="row">
+    <%= form_for [:admins, @genre] do |f| %>
+      <%= f.label :title, "ジャンル名" %>
+      <%= f.text_field :title %>
+      <%= f.radio_button :status, :true, checked: true %>
+      <%= f.label :status, "有効" %>
+      <%= f.radio_button :status, :false, checked: false %>
+      <%= f.label :status, "無効" %>
+      <%= f.submit "更新する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+</div>

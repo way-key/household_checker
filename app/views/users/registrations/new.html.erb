@@ -1,0 +1,51 @@
+<div class=container>
+
+  <div class="row">
+    <h2>新規登録</h2>
+  </div>
+
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :name_kana, "フリガナ" %>
+        <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :name, "ニックネーム" %>
+        <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード（6文字以上）" %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "パスワード確認" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class:"btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <h4>会員の方は　<%= link_to  "こちら", new_user_registration_path %>　から</h4>
+  </div>
+
+</div>
