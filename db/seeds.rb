@@ -30,3 +30,34 @@ end
     )
 end
 # product/
+
+# buy_listの作成
+User.find_each do |user|
+  4.times do |num|
+    BuyList.create!(
+      user_id: user.id,
+      title: "買い物リスト#{num + 1}"
+    )
+  end
+end
+# buy_list/
+
+# buy_list_productの作成
+BuyList.find_each do |buy_list|
+  6.times do |num|
+    BuyListProduct.create!(
+      buy_list_id: buy_list.id,
+      product_id: Product.all.sample.id,
+      amount: rand(0..3),
+      cost: ["", 30, 60].sample,
+      dead_line: rand(7..30).days.since
+    )
+  end
+end
+# buy_list_prouduct/
+
+# favoritesの作成
+# fovorites/
+
+# reviewの作成
+# reviews/

@@ -1,33 +1,8 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="seach-box">
-        <h3>商品検索</h3>
-        <%= search_form_for(@q, url:users_products_search_path) do |f| %>
-          <%= f.label :name, "商品名：" %>
-          <%= f.search_field :name_cont %><br>
-          <%= f.label :jan_code, "バーコード:" %>
-          <%= f.search_field :jan_code_cont %><br>
-          <%= f.label :genre_id, "ジャンル：" %>
-          <%= f.select :genre_id_eq, Genre.where(status: true).map{|genre| [genre.title, genre.id]}, include_blank: '選択してください', selected: false %>
-          <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
-          <%= f.submit "検索", class: "btn btn-info" %>
-        <% end %>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>ジャンル検索</h3>
-        </div>
-        <ul class="list-group">
-        <% @genres.each do |genre| %>
-            <li class="list-group-item">
-            <%= link_to genre.title, users_products_search_path(q: { genre_id_eq: genre.id }) %>
-            <%# q:にジャンルidを持たせ、searchメソッドへ遷移 %>
-            </li>
-        <% end %>
-      </div>
-      <%= link_to "新規作成", new_users_product_path, class: "btn btn-info" %>
-    </div>
+
+    <%= render 'users/products/search_list', genres: @genres, q: @q %>
+
     <div class="col-sm-9">
       <h2>商品一覧</h2>
         <% @products.each do |product| %>

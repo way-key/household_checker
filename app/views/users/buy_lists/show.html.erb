@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <h2><%= @buy_list.title %>の商品リスト</h2>
+  </div>
+
+  <div class="row">
+    <%= form_for [:users, @buy_list] do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.label :title, "買い物リスト名：" %>
+      <%= f.text_field :title %>
+      <%= f.submit "変更", class: "btn btn-info" %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="2">リスト商品</th>
+          <th>個数</th>
+          <th>購入期限</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @buy_list_products.each do |list| %>
+          <tr>
+            <%= form_for(list, url: users_buy_list_product_path) do |f| %>
+              <td><%= f.submit "✔︎" %></td>
+              <td><%= attachment_image_tag list.product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
+              <td><%= link_to list.product.name, users_product_path(list.product) %></td>
+              <td><%= f.select :amount,(1..10).to_a %></td>
+            <% end %>
+            <td><%= list.dead_line %></td>
+            <td><%= link_to "リストから削除", users_buy_list_product_path(list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

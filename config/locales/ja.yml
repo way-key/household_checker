@@ -1,4 +1,10 @@
 ja:
+  activerecord:
+    models:
+      buy_list:
+    attributes:
+      buy_list:
+        title: 買い物リスト名
   views:
       pagination:
         first: '最初のページ'

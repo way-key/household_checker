@@ -74,3 +74,4 @@ end
 gem 'faker'
 gem 'font-awesome-sass', '~> 5.4.1'
 gem 'ransack'
+gem 'rails-i18n'
