@@ -3,6 +3,23 @@
 
     <%= render 'users/products/search_list', genres: @genres, q: @q %>
 
-    <div class="col-sm-9">商品検索</div>
+    <div class="col-sm-9">
+      <h2>商品詳細</h2>
+
+      <%= attachment_image_tag @product, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg", size: '300x200' %>
+
+      <%= @product.name %>
+      <%= @product.introduction %>
+      <%= @product.genre.title %>
+      <%= form_for [:users, @buy_list_product] do |f| %>
+        <%= f.label :buy_list_id, "買い物リストに追加" %>
+        <%= f.select :buy_list_id, BuyList.where(user_id: current_user.id).map{|buy_list| [buy_list.title, buy_list.id]}, include_blank: '選択してください', selected: false %>
+          <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
+        <%= f.hidden_field :product_id, :value => @product.id %>
+        <%= f.hidden_field :amount, :value => 1 %>
+        <%= f.submit "追加", class: "btn btn-info" %>
+      <% end %>
+
+    </div>
   </div>
 </div>

@@ -19,7 +19,12 @@ class Users::ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    @buy_list_product = BuyListProduct.new
+  end
 
+  def edit
+    @product = Product.find(params[:id])
   end
 
   def create

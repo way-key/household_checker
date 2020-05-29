@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2><%= @buy_list.title %>の商品リスト</h2>
+    <h2>【<%= @buy_list.title %>】の商品</h2>
   </div>
 
   <div class="row">
@@ -19,6 +19,7 @@
           <th></th>
           <th colspan="2">リスト商品</th>
           <th>個数</th>
+          <th>消費日数（／個）</th>
           <th>購入期限</th>
           <th></th>
         </tr>
@@ -31,9 +32,20 @@
               <td><%= attachment_image_tag list.product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
               <td><%= link_to list.product.name, users_product_path(list.product) %></td>
               <td><%= f.select :amount,(1..10).to_a %></td>
+              <td><%= f.text_field :cost %></td>
+              <td>
+                <% if list.dead_line.present? %>
+                  <%= list.dead_line.strftime("%Y/%m/%d") %>
+                <% elsif list.cost.blank? %>
+                  <%= list.updated_at.strftime("%Y/%m/%d") %>
+                  <p>※前回購入日</p>
+                <% else %>
+                  <p>初回購入品</p>
+                <% end %>
+              <%# 商品のページから追加した時点で、購入期限は設定していないため、有り無しかで分岐 %>
+              </td>
             <% end %>
-            <td><%= list.dead_line %></td>
-            <td><%= link_to "リストから削除", users_buy_list_product_path(list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
+            <td><%= link_to "削除", users_buy_list_product_path(list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
           </tr>
         <% end %>
       </tbody>
