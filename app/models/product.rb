@@ -6,4 +6,8 @@ class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   attachment :image
 
+  def favorited_by?(user)
+    Favorite.where(user_id: user.id).exists?
+  end
+
 end

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <h2>お気に入り一覧</h2>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="2">商品</th>
+          <th>買い物リスト</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @favorites.each do |f| %>
+            <td><%= attachment_image_tag f.product, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
+            <td><%= f.product.name %></td>
+            <td>
+              <%=  %>
+            </td>
+            <td></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
