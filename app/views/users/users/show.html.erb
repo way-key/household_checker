@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <h2>会員情報</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", size: '200x200' %>
+    </div>
+
+    <div class="col-xs-6">
+      <table class="table">
+        <tr>
+          <th>名前</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @user.name_kana %></td>
+        </tr>
+        <tr>
+          <th>ニックネーム</th>
+          <td><%= @user.nickname %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= link_to "プロフィール編集", edit_users_user_path(@user), class: "btn btn-info" %>
+    <%= link_to "パスワードを変更", edit_user_registration_path, class: "btn btn-info" %>
+  </div>
+</div>

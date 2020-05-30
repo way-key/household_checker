@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <h2>会員一覧</h2>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="2">会員名</th>
+          <th>会員名(カナ)</th>
+          <th>ニックネーム</th>
+          <th colspan="2">会員ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @users.each do |user| %>
+            <th><%= attachment_image_tag user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></th>
+            <th><%= user.name %></th>
+            <th><%= user.name_kana %></th>
+            <th><%= user.nickname %></th>
+            <th>
+              <% case user.status when 0 %>
+                <span class="badge">制限なし</span>
+              <% when 1 %>
+                <span class="badge" style="background: orange;">コメント制限</span>
+              <% end %>
+            </th>
+            <th><%= link_to "会員情報詳細", edit_admins_user_path(user), class: "btn btn-info" %></th>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <%= paginate @users, class: "paginate" %>
+
+</div>

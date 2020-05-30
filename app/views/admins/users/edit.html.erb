@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <h2>会員情報詳細</h2>
+  </div>
+
+  <%= render 'users/users/profile_form', user: @user %>
+
+  <div class="row">
+    <%= form_for [:admins, @user] do |f| %>
+      <%= f.select :status, [["制限なし",0],["コメント制限",1]] %>
+      <%= f.submit "更新", class: "btn btn-info" %>
+    <% end %>
+  </div>
+
+</div>

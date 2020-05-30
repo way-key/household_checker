@@ -1,4 +1,5 @@
 class Users::BuyListProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_buy_list_product, only: [:edit, :update, :destroy]
 
 
