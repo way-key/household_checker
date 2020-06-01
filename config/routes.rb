@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
     get "search", to: "products#search", as:"products_search"
     resources :users, only: [:edit, :update]
-    resources :favorites, only: [:index, :create, :destroy]
+    resources :favorites, only: [:index, :show, :create, :destroy]
   end
 
 
