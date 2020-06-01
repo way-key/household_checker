@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <h2>レビュー　一覧</h2>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="2">ユーザー</th>
+          <th>作成日</th>
+          <th>スコア</th>
+          <th>コメント</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+        <tr>
+          <td><%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
+          <td><%= review.user.nickname %></td>
+          <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
+          <td id="star-rate-<%= review.id %>"></td>
+          <script>
+            $('#star-rate-<%= review.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              readOnly: true,
+              score: <%= review.score %>,
+            });
+          </script>
+          <td><%= review.comment %></td>
+          <%= form_for [:admins, review] do |f| %>
+            <td><%= f.select :status, [["非表示", false],["表示中", true]] %></td>
+            <td><%= f.submit "更新", class: "btn btn-info" %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

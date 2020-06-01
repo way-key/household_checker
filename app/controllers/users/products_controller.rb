@@ -21,6 +21,8 @@ class Users::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @buy_list_product = BuyListProduct.new
+    @review = @product.reviews.new
+    @reviews = @product.reviews.where(status: true).page(params[:page]).per(10).reverse_order
   end
 
   def edit

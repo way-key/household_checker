@@ -22,9 +22,8 @@ Rails.application.routes.draw do
   namespace :users do
     resources :buy_lists, only: [:index, :show, :create, :update, :destroy]
     resources :buy_list_products, only: [:create, :update, :destroy]
-    resources :products, only: [:new, :index, :show, :edit, :create, :update] do
-      resources :reviews, only: [:create, :destroy]
-    end
+    resources :products, only: [:new, :index, :show, :edit, :create, :update]
+    resources :reviews, only: [:create, :destroy]
     get "search", to: "products#search", as:"products_search"
     resources :users, only: [:edit, :update]
     resources :favorites, only: [:index, :show, :create, :destroy]

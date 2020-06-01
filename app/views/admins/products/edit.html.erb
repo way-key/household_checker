@@ -18,7 +18,7 @@
           <%= f.label :jan_code, "JANコード" %>
           <%= f.text_field :jan_code %><br>
           <%= f.label :status, "表示ステータス" %>
-          <%= f.select :status, [["非表示", false],["表示中", true]], include_blank: '--選択してください--' %><br>
+          <%= f.select :status, [["表示中", true],["非表示", false]], include_blank: '--選択してください--' %><br>
           <%= f.submit "変更する", class: "btn btn-info" %>
         </div>
     </div>

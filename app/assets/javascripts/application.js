@@ -17,3 +17,15 @@
 //= require_tree .
 
 //= require bootstrap
+
+$(function () {
+  $('#star').raty({　　　
+    size: 36,
+    starOff: "/assets/star-off.png",
+    starOn: "/assets/star-on.png",
+    starHalf: "#{asset_path('star-half.png')}",
+    scoreName: 'review[score]',
+  //  reviewカラムに保存する
+  });
+});
+// 評価機能のscoreが発火するよう定義
