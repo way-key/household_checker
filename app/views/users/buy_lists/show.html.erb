@@ -27,18 +27,18 @@
       <tbody>
         <% @buy_list_products.each do |list| %>
           <tr>
-            <%= form_for(list, url: users_buy_list_product_path) do |f| %>
+            <%= form_for [:users, list] do |f| %>
               <td><%= f.submit "✔︎" %></td>
               <td><%= attachment_image_tag list.product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
               <td><%= link_to list.product.name, users_product_path(list.product) %></td>
               <td><%= f.select :amount,(1..10).to_a %></td>
               <td><%= f.text_field :cost %></td>
               <td>
-                <% if list.dead_line.present? %>
-                  <%= list.dead_line.strftime("%Y/%m/%d") %>
-                <% elsif list.cost.blank? %>
+                <% if list.cost.blank? %>
                   <%= list.updated_at.strftime("%Y/%m/%d") %>
                   <p>※前回購入日</p>
+                <% elsif list.dead_line.present? %>
+                  <%= list.dead_line.strftime("%Y/%m/%d") %>
                 <% else %>
                   <p>初回購入品</p>
                 <% end %>
