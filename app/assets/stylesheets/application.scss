@@ -15,5 +15,53 @@
  */
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-
 @import "bootstrap";
+
+// 共通
+
+.pagination {
+  justify-content: center;
+}
+
+.alert {
+	text-align: center;
+}
+.alert-info {
+    background-color: #bde9ff;
+    border-color: #bde9ff;
+    color: #4c6977;
+}
+
+.alert-danger {
+    background-color: #f3c0c0;
+    border-color: #f3c0c0;
+    color: #3e3a3a;
+}
+
+// header
+
+.nav-list {
+  display: flex;
+  height: 80px;
+  line-height: 80px;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  border-bottom: 1px solid #000000;
+
+  &__item {
+    list-style: none;
+  }
+}
+
+// background-image: url(画像までのパス);
+
+// 管理者ページ
+
+// header
+.admin-title {
+  margin: 50px auto;
+
+  &__sub {
+    margin: 30px 0 30px 30px;
+  }
+}

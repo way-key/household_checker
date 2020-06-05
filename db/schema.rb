@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_044349) do
+ActiveRecord::Schema.define(version: 2020_06_03_060928) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +28,6 @@ ActiveRecord::Schema.define(version: 2020_05_29_044349) do
     t.integer "buy_list_id", null: false
     t.integer "product_id", null: false
     t.integer "amount", null: false
-    t.date "last_buy"
-    t.integer "last_amount"
     t.integer "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

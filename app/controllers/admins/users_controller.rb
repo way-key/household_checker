@@ -7,6 +7,7 @@ class Admins::UsersController < ApplicationController
   end
 
   def edit
+    @reviews = @user.reviews.all.page(params[:page]).per(20)
   end
 
   def update

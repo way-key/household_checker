@@ -1,39 +1,50 @@
 <div class="container">
 
   <div class="row">
-    <h2>ジャンル一覧</h2>
+    <h2 class="admin-title">ジャンル一覧</h2>
   </div>
 
   <div class="row">
-    <%= form_for [:admins, @new_genre] do |f| %>
-          <%= f.text_field :title %>
-          <%= f.radio_button :status, :true, checked: true %>
-          <%= f.label :status, "有効" %>
-          <%= f.radio_button :status, :false, checked: false %>
-          <%= f.label :status, "無効" %>
-          <%= f.submit "追加", class:"btn btn-info" %>
-    <%end%>
+    <div class="genre-create">
+      <%= form_for [:admins, @new_genre] do |f| %>
+        <%= f.text_field :title, class: "genre-create__list" %>
+        <%= f.radio_button :status, :true, checked: true, class: "genre-create__list" %>
+        <%= f.label :status, "有効", class: "genre-create__list" %>
+        <%= f.radio_button :status, :false, checked: false, class: "genre-create__list" %>
+        <%= f.label :status, "無効", class: "genre-create__list" %>
+        <%= f.submit "追加", class:"btn btn-primary" %>
+      <%end%>
+    </div>
   </div>
 
   <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ジャンル名</th>
-          <th>ステータス</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @genres.each do |genre| %>
-        <tr>
-          <td><%= genre.title %></td>
-          <td><%= genre.status ? "有効" : "無効" %></td>
-          <td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn btn-info" %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ジャンル名</th>
+            <th>ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.title %></td>
+            <td><%= genre.status ? "有効" : "無効" %></td>
+            <td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn btn-primary" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 offset-4">
+      <%= paginate @genres, class: "paginate" %>
+    </div>
   </div>
 
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2>レビュー　一覧</h2>
+    <h2 class="admin-title">レビュー　一覧</h2>
   </div>
   <div class="row">
     <table class="table">
@@ -10,7 +10,7 @@
           <th>作成日</th>
           <th>スコア</th>
           <th>コメント</th>
-          <th></th>
+          <th colspan="2">ステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -32,8 +32,8 @@
           </script>
           <td><%= review.comment %></td>
           <%= form_for [:admins, review] do |f| %>
-            <td><%= f.select :status, [["非表示", false],["表示中", true]] %></td>
-            <td><%= f.submit "更新", class: "btn btn-info" %></td>
+            <td class="form-group"><%= f.select :status, [["非表示", false],["表示中", true]], {}, class: "form-control" %></td>
+            <td><%= f.submit "更新", class: "btn btn-primary" %></td>
           <% end %>
         </tr>
         <% end %>

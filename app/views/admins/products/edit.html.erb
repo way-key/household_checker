@@ -1,26 +1,41 @@
-<div class="container-fluid">
+<div class="container">
   <%= form_for [:admins, @product] do |f| %>
     <div class="row">
-      <h2>商品編集画面</h2>
+      <h2 class="admin-title">商品編集画面</h2>
     </div>
     <div class="row">
-        <div class="col-xs-4">
-          <%= attachment_image_tag @product, :image, :fill, 500, 500, format: 'jpeg', fallback: "no_image.jpg", size: '500x500' %><br>
-          <%= f.attachment_field :image %>
-        </div>
-        <div class="col-xs-8">
+      <div class="col-lg-6">
+        <%= attachment_image_tag @product, :image, :fill, 400, 400, format: 'jpeg', fallback: "no_image.jpg", size: '400x400' %><br>
+        <%= f.attachment_field :image %>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
           <%= f.label :name, "商品名" %>
-          <%= f.text_field :name %><br>
-          <%= f.label :introduction, "商品説明" %>
-          <%= f.text_area :introduction %><br>
-          <%= f.label :genre_id, "ジャンル" %>
-          <%= f.collection_select :genre_id, Genre.all, :id, :title, include_blank: '--選択してください--' %><br>
-          <%= f.label :jan_code, "JANコード" %>
-          <%= f.text_field :jan_code %><br>
-          <%= f.label :status, "表示ステータス" %>
-          <%= f.select :status, [["表示中", true],["非表示", false]], include_blank: '--選択してください--' %><br>
-          <%= f.submit "変更する", class: "btn btn-info" %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
+        <div class="form-group">
+          <%= f.label :introduction, "商品説明" %>
+          <%= f.text_area :introduction, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :genre_id, "ジャンル" %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :title, {}, {class: "form-control"} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :jan_code, "JANコード" %>
+          <%= f.text_field :jan_code, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :status, "表示ステータス" %>
+          <%= f.select :status, [["表示中", true],["非表示", false]], {}, {class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mx-auto">
+        <%= f.submit "変更する", class: "btn btn-primary"%>
+      </div>
     </div>
   <% end %>
 </div>

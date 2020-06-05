@@ -15,7 +15,7 @@ class Users::BuyListsController < ApplicationController
   def create
     @new_buy_list = current_user.buy_lists.new(buy_list_params)
     if @new_buy_list.save
-      redirect_to users_buy_lists_path, notice: "新たな買い物リストを作成しました"
+      redirect_to users_buy_lists_path, notice: "買い物リスト　#{@new_buy_list.title}を作成しました"
     else
       @buy_lists = current_user.buy_lists.all
       render "index"
