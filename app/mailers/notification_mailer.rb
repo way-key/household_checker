@@ -7,12 +7,4 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def send_when_test
-    @check_buy_list = BuyListProducts.where(dead_line: Date.today)
-    if @check_buy_list.present?
-      mail to: "45gqz7@gmail.com",
-      subject: "買い物リスト商品の期限が近づいてきました"
-    end
-    p "メール送信"
-  end
 end

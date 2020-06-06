@@ -4,14 +4,18 @@
     <%= render 'users/products/search_list', genres: @genres, q: @q %>
 
     <div class="col-sm-9">
-      <h2>商品一覧</h2>
+      <h2 class="user-title">商品一覧</h2>
+      <div class="product-list">
         <% @products.each do |product| %>
-          <%= link_to users_product_path(product) do %>
-          　<%= attachment_image_tag product, :image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100' %><br>
-            <%= product.name %><br>
-            <%= product.genre.title %><br>
-          <% end %>
+          <div class="product-list__item">
+              <%= link_to users_product_path(product) do %>
+              　<div class=""><%= attachment_image_tag product, :image, :fill, 200, 200, fallback: "no_image.jpg", size: '200x200' %></div>
+                <div class="product-name">【 商品名 】<%= product.name%></div>
+                <div class="product-genre">【ジャンル】<%= product.genre.title %></div>
+              <% end %>
+          </div>
         <% end %>
+      </div>
       <%= paginate @products, class: "paginate" %>
     </div>
   </div>

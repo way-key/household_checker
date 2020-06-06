@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
-    <h2>【<%= @buy_list.title %>】の商品</h2>
+    <h2 class="user-title">【<%= @buy_list.title %>】の商品</h2>
   </div>
 
-  <div class="row">
-    <%= form_for [:users, @buy_list] do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.label :title, "買い物リスト名：" %>
-      <%= f.text_field :title %>
-      <%= f.submit "変更", class: "btn btn-info" %>
-    <% end %>
+  <div class="row title-create">
+    <div class="mx-auto form-inline">
+      <%= form_for [:users, @buy_list] do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <%= f.label :title, "買い物リスト名変更" %>
+        <%= f.text_field :title, class: "form-control" %>
+        <%= f.submit "変更", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 
   <div class="row">
@@ -32,7 +34,7 @@
               <td><%= attachment_image_tag list.product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
               <td><%= link_to list.product.name, users_product_path(list.product) %></td>
               <td><%= f.select :amount,(1..10).to_a %></td>
-              <td><%= f.text_field :cost %></td>
+              <td><div class="form-group"><%= f.text_field :cost, class: "form-control" %></div></td>
               <td>
                 <% if list.cost.blank? %>
                   <%= list.updated_at.strftime("%Y/%m/%d") %>

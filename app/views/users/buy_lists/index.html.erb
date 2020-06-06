@@ -1,32 +1,39 @@
 <div class="container">
   <div class="row">
-    <h2>買い物リスト一覧</h2>
+    <h2 class="user-title">買い物リスト一覧</h2>
   </div>
 
-  <div class="row">
-    <%= form_for [:users, @new_buy_list] do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.label :title, "新規買い物リスト：" %>
-      <%= f.text_field :title %>
-      <%= f.submit "作成", class: "btn btn-info" %>
-    <% end %>
-  </div>
-
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th colspan="2">買い物リスト名</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @buy_lists.each do |buy_list| %>
-        <tr>
-          <td><%= link_to buy_list.title, users_buy_list_path(buy_list) %></td>
-          <td><%= link_to "削除する", users_buy_list_path(buy_list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
-        </tr>
+  <div class="row title-create">
+    <div class="mx-auto form-inline">
+      <div class="form-group">
+        <%= form_for [:users, @new_buy_list] do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <%= f.label :title, "新規買い物リスト作成" %>
+          <%= f.text_field :title, class: "form-control" %>
+          <%= f.submit "作成", class: "btn btn-success" %>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 offset-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>買い物リスト名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @buy_lists.each do |buy_list| %>
+          <tr>
+            <td><%= link_to buy_list.title, users_buy_list_path(buy_list) %></td>
+            <td class="float-right"><%= link_to "削除する", users_buy_list_path(buy_list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
