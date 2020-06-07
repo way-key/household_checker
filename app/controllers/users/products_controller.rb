@@ -10,11 +10,11 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(status: true).page(params[:page]).per(5)
+    @products = Product.where(status: true).page(params[:page]).per(20)
   end
 
   def search
-    @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(5)
+    @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(20)
     render "index"
   end
 

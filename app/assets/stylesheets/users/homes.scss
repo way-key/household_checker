@@ -1,3 +1,38 @@
 // Place all the styles related to the users::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-visual {
+  height: 200px;
+  width: 100%;
+  background-color: #ffc3c3;
+
+  &__text {
+
+  }
+}
+
+.sub-visual {
+  height: 200px;
+  width: 100%;
+  background-color: #e3ffc3;
+  border-bottom: 1px solid #000000;
+
+  &__text {
+
+  }
+}
+
+.home-btn {
+  height: 200px;
+  width: 100%;
+  background-color: #c3e4ff;
+
+  &__text {
+
+  }
+
+  &__btn {
+
+  }
+}

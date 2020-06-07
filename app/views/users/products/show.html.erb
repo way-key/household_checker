@@ -4,59 +4,94 @@
     <%= render 'users/products/search_list', genres: @genres, q: @q %>
 
     <div class="col-sm-9">
-      <h2>商品詳細</h2>
+      <h2 class="user-title">商品詳細</h2>
 
-      <%= attachment_image_tag @product, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg", size: '300x200' %>
-      <% if @product.favorited_by?(current_user) %>
-        <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-info" %>
-      <% else %>
-        <%= link_to "お気に入りに追加", users_favorites_path(product_id: @product.id), method: :post, class: "btn btn-info" %>
-      <% end %>
-      <%= @product.name %>
-      <%= @product.introduction %>
-      <%= @product.genre.title %>
-      <%= form_for [:users, @buy_list_product] do |f| %>
-        <%= f.label :buy_list_id, "買い物リストに追加" %>
-        <%= f.select :buy_list_id, BuyList.where(user_id: current_user.id).map{|buy_list| [buy_list.title, buy_list.id]}, include_blank: '選択してください', selected: false %>
-          <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
-        <%= f.hidden_field :product_id, value: @product.id %>
-        <%= f.hidden_field :amount, :value => 1 %>
-        <%= f.submit "追加", class: "btn btn-info" %>
-      <% end %>
-
-      <h3>評価する</h3>
-
-      <%= form_for [:users, @review] do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
-        <%= f.hidden_field :product_id, value: @product.id %>
-        <div id="star">
-          <%= f.label :score,'評価 '%>
-          <%= f.hidden_field :score, id: :review_star %>
+      <div class="row">
+        <div class="col-xs-6">
+          <%= attachment_image_tag @product, :image, :fill, 400, 400, format: 'jpeg', fallback: "no_image.jpg", size: '500x500' %>
         </div>
-        <%= f.label :comment %>
-        <%= f.text_area :comment %><br>
-        <%= f.submit "送信", class:"btn btn-info" %>
-      <% end %>
+        <div class="col-xs-5 product-show">
+          <h3 class="product-name">商品名：<%= @product.name %></h3>
+          <p class="product-introduction">
+            商品説明：<br>
+            <%= @product.introduction %>
+          </p>
+          <p class="product-genre">商品ジャンル：<%= @product.genre.title %></p>
+          <div class="product-addlist">
+            <%= form_for [:users, @buy_list_product] do |f| %>
+              <div class="form-group form-inline">
+              <%= f.label :buy_list_id, "買い物リストに追加" %>
+              <%= f.select :buy_list_id, BuyList.where(user_id: current_user.id).map{|buy_list| [buy_list.title, buy_list.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control"  %>
+              <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
+              <%= f.hidden_field :product_id, value: @product.id %>
+              <%= f.hidden_field :amount, :value => 1 %>
+              <%= f.submit "追加", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="product-button">
+            <% if @product.favorited_by?(current_user) %>
+              <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-outline-warning" %>
+            <% else %>
+              <%= link_to "お気に入りに追加", users_favorites_path(product_id: @product.id), method: :post, class: "btn btn-outline-warning" %>
+            <% end %>
+          </div>
+          <div class="product-button">
+            <%= link_to "商品情報の編集", edit_users_product_path(@product), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
 
+      <div class="review-create">
+        <h3 class="review-create__title">評価する</h3>
+
+        <%= form_for [:users, @review] do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <div class="review-create__score">
+            <div id="star">
+              <%= f.label :score,'評価 '%>
+              <%= f.hidden_field :score, id: :review_star, class: "form-control" %>
+            </div>
+          </div>
+          <div class="review-create__comment form-group">
+            <%= f.label :comment, "コメント" %>
+            <%= f.text_area :comment, class:"form-control" %><br>
+            <%= f.submit "コメントを作成", class:"btn btn-success form-control" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="review-list">
       <% if @product.reviews.present? %>
-        <h3>評価一覧</h3>
+        <h3 class="review-list__title">評価一覧</h3>
+
         <% @reviews.each do |review| %>
-          <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %>
-          <%= review.user.nickname %>
-          <%= review.created_at.strftime("%Y/%m/%d") %><br>
-          評価：<span id="star-rate-<%= review.id %>"></span><br>
-          <script>
-            $('#star-rate-<%= review.id %>').raty({
-              size: 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= review.score %>,
-            });
-          </script>
-          <%# コメント一覧に星表示%>
-          <%= review.comment %><br>
+          <div class="review-list__user">
+            <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %>
+            <%= review.user.nickname %>
+            <%= review.created_at.strftime("%Y/%m/%d") %>
+          </div>
+
+          <div class="review-list__score">
+            評価：<span id="star-rate-<%= review.id %>"></span>
+            <script>
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= review.score %>,
+              });
+            </script>
+            <%# コメント一覧に星表示%>
+          </div>
+
+          <div class="review-list__comment">
+            <p>コメント：</p>
+            <%= review.comment %>
+          </div>
         <% end %>
         <%= paginate @reviews, class: "paginate" %>
       <% end %>

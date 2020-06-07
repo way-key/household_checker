@@ -39,7 +39,7 @@
     color: #3e3a3a;
 }
 
-// header
+// header・footer
 
 .nav-list {
   display: flex;
@@ -52,6 +52,18 @@
   &__item {
     list-style: none;
   }
+}
+
+footer {
+  margin-top: 50px;
+  height: 100px;
+  line-height: 100px;
+  background-color: #ababab;
+}
+
+.footer-text {
+  color: #fff;
+  margin: 0 auto;
 }
 
 // ユーザーページ
