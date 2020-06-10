@@ -12,9 +12,9 @@
             <li class="nav-list__item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
           </div>
         <% elsif user_signed_in? %>
-          <div class="container-fluid mx-auto">
-            <div class="mx-auto">
-              <%= link_to image_tag asset_path('hhc_logo.jpg'), root_path %>
+          <div class="container-fluid">
+            <div class="header-logo">
+              <%= link_to image_tag(asset_path('hhc_logo.jpg')), root_path %>
             </div>
             <nav>
               <ul class="nav-list">
@@ -27,9 +27,9 @@
             </nav>
           </div>
         <% else %>
-          <div class="container-fluid mx-auto">
-            <div class="mx-auto">
-              <%= link_to image_tag asset_path('hhc_logo.jpg'), root_path %>
+          <div class="container-fluid">
+            <div class="header-logo">
+              <%= link_to image_tag(asset_path('hhc_logo.jpg')), root_path %>
             </div>
             <nav>
               <ul class="nav-list">
