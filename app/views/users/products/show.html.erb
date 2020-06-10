@@ -7,10 +7,10 @@
       <h2 class="user-title">商品詳細</h2>
 
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-sm-6">
           <%= attachment_image_tag @product, :image, :fill, 400, 400, format: 'jpeg', fallback: "no_image.jpg", size: '500x500' %>
         </div>
-        <div class="col-xs-5 product-show">
+        <div class="col-sm-5 product-show">
           <h3 class="product-name">商品名：<%= @product.name %></h3>
           <p class="product-introduction">
             商品説明：<br>
@@ -31,7 +31,7 @@
           </div>
           <div class="product-button">
             <% if @product.favorited_by?(current_user) %>
-              <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-outline-warning" %>
+              <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-outline-danger" %>
             <% else %>
               <%= link_to "お気に入りに追加", users_favorites_path(product_id: @product.id), method: :post, class: "btn btn-outline-warning" %>
             <% end %>
@@ -45,19 +45,23 @@
       <div class="review-create">
         <h3 class="review-create__title">評価する</h3>
 
-        <%= form_for [:users, @review] do |f| %>
-          <%= f.hidden_field :product_id, value: @product.id %>
-          <div class="review-create__score">
-            <div id="star">
-              <%= f.label :score,'評価 '%>
-              <%= f.hidden_field :score, id: :review_star, class: "form-control" %>
+        <% if current_user.status == 0 %>
+          <%= form_for [:users, @review] do |f| %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <div class="review-create__score">
+              <div id="star">
+                <%= f.label :score,'評価 '%>
+                <%= f.hidden_field :score, id: :review_star, class: "form-control" %>
+              </div>
             </div>
-          </div>
-          <div class="review-create__comment form-group">
-            <%= f.label :comment, "コメント" %>
-            <%= f.text_area :comment, class:"form-control" %><br>
-            <%= f.submit "コメントを作成", class:"btn btn-success form-control" %>
-          </div>
+            <div class="review-create__comment form-group">
+              <%= f.label :comment, "コメント" %>
+              <%= f.text_area :comment, class:"form-control" %><br>
+              <%= f.submit "コメントを作成", class:"btn btn-success form-control" %>
+            </div>
+          <% end %>
+        <% elsif current_user.status == 1 %>
+          <strong style="color:red;">※あなたは管理者権限によりコメントを制限されています。</strong>
         <% end %>
       </div>
 
