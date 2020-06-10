@@ -1,4 +1,5 @@
 class Users::ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_search
 
   def top
@@ -10,16 +11,23 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(status: true).page(params[:page]).per(5)
+    @products = Product.where(status: true).page(params[:page]).per(20)
   end
 
   def search
-    @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(5)
+    @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(20)
     render "index"
   end
 
   def show
+    @product = Product.find(params[:id])
+    @buy_list_product = BuyListProduct.new
+    @review = @product.reviews.new
+    @reviews = @product.reviews.where(status: true).page(params[:page]).per(10).reverse_order
+  end
 
+  def edit
+    @product = Product.find(params[:id])
   end
 
   def create
@@ -32,6 +40,12 @@ class Users::ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
+    if @product.save
+      redirect_to users_product_path(@product), notice: "商品情報が更新されました。"
+    else
+      render "edit"
+    end
 
 
   end

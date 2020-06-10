@@ -1,0 +1,52 @@
+  <div class="container-fluid">
+    <div class="row">
+        <% if admin_signed_in? %>
+          <div class="container-fluid mx-auto">
+            <h1><%= link_to "Household_checker　管理者用ページ", admins_path %></h1>
+            <nav>
+              <ul class="nav-list">
+            <li class="nav-list__item"><%= link_to "ジャンル一覧", admins_genres_path, class: "btn btn-outline-secondary" %></li>
+            <li class="nav-list__item"><%= link_to "商品一覧", admins_products_path, class: "btn btn-outline-secondary" %></li>
+            <li class="nav-list__item"><%= link_to "レビュー一覧", admins_reviews_path, class: "btn btn-outline-secondary"%></li>
+            <li class="nav-list__item"><%= link_to "会員一覧", admins_users_path, class: "btn btn-outline-secondary"%></li>
+            <li class="nav-list__item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
+          </div>
+        <% elsif user_signed_in? %>
+          <div class="container-fluid mx-auto">
+            <div class="container-fluid">
+              <%= link_to image_tag('hhc_logo.jpg'), root_path, class: "mx-auto" %>
+            </div>
+            <nav>
+              <ul class="nav-list">
+                <li class="nav-list__item"><%= link_to "商品一覧", users_products_path, class: " btn btn-outline-secondary"%></li>
+                <li class="nav-list__item"><%= link_to "買い物リスト", users_buy_lists_path, class: "btn btn-outline-secondary"%></li>
+                <li class="nav-list__item"><%= link_to "お気に入り一覧", users_favorites_path, class: "btn btn-outline-secondary"%></li>
+                <li class="nav-list__item"><%= link_to "マイページ", users_user_path(current_user), class: "btn btn-outline-secondary" %></li>
+                <li class="nav-list__item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
+              </ul>
+            </nav>
+          </div>
+        <% else %>
+          <div class="container-fluid mx-auto">
+            <div class="mx-auto">
+              <%= link_to image_tag('hhc_logo.jpg'), root_path %>
+            </div>
+            <nav>
+              <ul class="nav-list">
+                <li class="nav-list__item"><%= link_to "ログイン", new_user_session_path, class:"btn btn-outline-secondary" %></li>
+                <li class="nav-list__item"><%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-secondary" %></li>
+              </ul>
+            </nav>
+          </div>
+        <% end %>
+    </div>
+    <% if notice %>
+      <div class="alert alert-info"><%= notice %>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    <% elsif alert %>
+      <div class="alert alert-danger"><%= alert %>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    <% end %>
+  </div>

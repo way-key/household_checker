@@ -1,51 +1,56 @@
 <div class=container>
 
   <div class="row">
-    <h2>新規登録</h2>
+    <h2 class="user-title">新規登録</h2>
   </div>
 
   <div class="row">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="col-xs-8 offset-2 mx-auto">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
 
-      <div class="field">
-        <%= f.label :name, "名前" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "遊佐太郎", size: "50" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :name_kana, "フリガナ" %>
-        <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :name_kana, "フリガナ" %>
+          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "ユウザタロウ", class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :name, "ニックネーム" %>
-        <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :name, "ニックネーム" %>
+          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "ユウ", class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "◯◯◯◯◯@△△△△.□□□□□", class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :password, "パスワード（6文字以上）" %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :password, "パスワード（6文字以上）" %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "・・・・・・・・", class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation, "パスワード確認" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "・・・・・・・・", class: "form-control" %>
+        </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up", class:"btn btn-success" %>
-      </div>
-    <% end %>
+        <div class="form-group">
+          <%= f.submit "新規登録", class:"btn btn-success" %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
 
   <div class="row">
-    <h4>会員の方は　<%= link_to  "こちら", new_user_registration_path %>　から</h4>
+    <div class="col-xs-6 offset-3">
+      <h4 class="sign-link">会員の方は　<%= link_to  "こちら", new_user_registration_path %>　から</h4>
+    </div>
   </div>
 
 </div>

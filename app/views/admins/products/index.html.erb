@@ -1,32 +1,33 @@
-<div class="container-fluid">
+<div class="container">
 
   <div class="row">
-    <h2>商品一覧</h2>
+    <h2 class="admin-title">商品一覧</h2>
   </div>
 
   <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th colspan="2">商品名</th>
-          <th>ジャンル</th>
-          <th>ステータス</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @products.each do |product| %>
+    <div class="col-lg-10 offset-1">
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= attachment_image_tag product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
-            <td><%= product.name %></td>
-            <td><%= product.genre.title %></td>
-            <td><%= product.status ? "表示中" : "" %></td>
-            <td><%= link_to "編集する", edit_admins_product_path(product), class: "btn btn-info" %></td>
+            <th colspan="2">商品名</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= attachment_image_tag product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
+              <td><%= product.name %></td>
+              <td><%= product.genre.title %></td>
+              <td><%= product.status ? "表示中" : "" %></td>
+              <td><%= link_to "編集する", edit_admins_product_path(product), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 <%= paginate @products, class: "paginate" %>
 </div>

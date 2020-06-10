@@ -1,3 +1,39 @@
-<h2>ログイン後の遷移画面</h2>
+<div class="container">
+  <div class="row">
+    <h2 class="user-title">買い物リスト一覧</h2>
+  </div>
 
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-info" %>
+  <div class="row title-create">
+    <div class="mx-auto form-inline">
+      <div class="form-group">
+        <%= form_for [:users, @new_buy_list] do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <%= f.label :title, "新規買い物リスト作成" %>
+          <%= f.text_field :title, class: "form-control" %>
+          <%= f.submit "作成", class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 offset-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>買い物リスト名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @buy_lists.each do |buy_list| %>
+          <tr>
+            <td><%= link_to buy_list.title, users_buy_list_path(buy_list) %></td>
+            <td class="float-right"><%= link_to "削除する", users_buy_list_path(buy_list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

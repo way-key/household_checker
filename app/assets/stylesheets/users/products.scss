@@ -1,3 +1,73 @@
 // Place all the styles related to the users::Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.product-button {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__item {
+    width: 250px;
+    border: 1px solid #cacaca;
+    margin: 5px;
+  }
+}
+
+.product-name {
+  padding-bottom: 20px;
+}
+
+.product-introduction {
+  height: 200px;
+  border: 1px solid #000000;
+}
+
+.product-show {
+  margin-left: 30px;
+}
+
+.review-create {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000000;
+
+  &__title {
+    margin: 20px 0 20px 20px;
+  }
+}
+
+.review-list {
+
+
+  &__user {
+    padding-top: 10px;
+    border-top: 1px solid #adadad;
+  }
+
+  &__title {
+    margin: 20px 0 20px 20px;
+  }
+
+  &__score {
+    margin: 20px 0 20px 20px;
+  }
+
+  &__comment {
+    padding-bottom: 10px;
+  }
+
+}
+
+.product-create {
+  margin: 0 20px 0 20px;
+}

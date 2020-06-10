@@ -1,6 +1,13 @@
-<h1>管理者ログイン後遷移画面</h1>
+<div class="container">
+  <div class="row">
 
-<%= link_to "ジャンル一覧", admins_genres_path, class: "btn btn-info" %>
-<%= link_to "商品一覧", admins_products_path, class: "btn btn-info" %>
+    <h1 class="admin-title">管理者トップページ</h1>
 
-<%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
+    <%= link_to "ジャンル一覧", admins_genres_path, class: "btn btn-info btn-block p-10" %>
+    <%= link_to "商品一覧", admins_products_path, class: "btn btn-info btn-block p-10" %>
+    <%= link_to "レビュー一覧", admins_reviews_path, class: "btn btn-info btn-block p-10"%>
+    <%= link_to "会員一覧", admins_users_path, class: "btn btn-info btn-block p-10"%>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-info btn-block p-10" %>
+
+  </div>
+</div>

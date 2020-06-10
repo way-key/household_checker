@@ -1,4 +1,53 @@
-<h1>ユーザーのトップページ(ログアウト遷移先)</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="main-visual">
+      <div class="main-visual__text">
+          <h2 class="top-title">『買い忘れ』を忘れよう</h2>
+          <p class="top-text">
+            <br>
+            出先での買い忘れで後悔した事はありませんか?<br>
+            このサイトでは定期的に購入する日用品をリストアップ、<br>
+            あなたに新しい買い物リストを提供いたします。
+          </p>
+      </div>
+    </div>
+  </div>
 
-<%= link_to "ログイン", new_user_session_path, class:"btn btn-info" %>
-<%= link_to "新規登録", new_user_registration_path, class:"btn btn-info" %>
+  <div class="row">
+    <div class="sub-visual1">
+      <div class="sub-visual1__text">
+          <h3 class="top-title__sub">機能①：買い物リスト</h3>
+          <p class="top-text">
+            シンプルな買い物リストです。<br>
+            リストは複数作成できるので、店舗別、ジャンル別に<br>
+            商品を分類できます。<br>
+            また、使用頻度を設定することで、備蓄切れを一目で確認できます。
+          </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="sub-visual2">
+      <div class="sub-visual2__text">
+          <h3 class="top-title__sub">機能②：商品レビュー</h3>
+          <p class="top-text">
+            他の使用者の感想・評価を確認できます。<br>
+            新しい商品を購入する検討材料にしましょう
+          </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="home-btn">
+      <div class="home-btn__text">
+        <h4>
+          日々の暮らしをもっと便利に<br>
+          あなたも体験してみましょう！
+        </h4>
+      </div>
+      <div class="home-btn__btn">
+        <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-success btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>
