@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'users/homes#top'
-  get "/about", to: "users/homes#about"
 
   devise_for :admins, controllers: {
     sessions: "admins/sessions"

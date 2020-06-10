@@ -3,36 +3,82 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .main-visual {
-  height: 200px;
+  height: 600px;
   width: 100%;
-  background-color: #ffc3c3;
+  margin: 100px 0 50px 0;
+  background-image: image-url("top1.jpg");
+  background-size: cover;
+  background-position: top right;
 
   &__text {
-
+    width: 50%;
+    height: 100%;
+    margin-left: 20px;
+    background-color: rgba( 0, 0, 0, 0.5);
+    text-align: center;
+    padding-top: 220px;
   }
 }
 
-.sub-visual {
-  height: 200px;
+.sub-visual1 {
+  height: 600px;
   width: 100%;
-  background-color: #e3ffc3;
-  border-bottom: 1px solid #000000;
+  margin-bottom: 50px;
+  background-image: image-url("top2.jpg");
+  background-size: cover;
+  background-position: bottom left;
 
   &__text {
+    width: 40%;
+    height: 100%;
+    margin-left: auto;
+    background-color: rgba( 0, 0, 0, 0.5);
+    text-align: center;
+    padding-top: 200px;
+  }
+}
 
+.sub-visual2 {
+  height: 600px;
+  width: 100%;
+  margin-bottom: 50px;
+  background-image: image-url("top3.jpg");
+  background-size: cover;
+  background-position: top right;
+
+  &__text {
+    width: 40%;
+    height: 100%;
+    background-color: rgba( 0, 0, 0, 0.5);
+    text-align: center;
+    padding-top: 200px;
   }
 }
 
 .home-btn {
   height: 200px;
   width: 100%;
-  background-color: #c3e4ff;
 
   &__text {
-
+    text-align: center;
+    margin-bottom: 50px;
   }
 
   &__btn {
-
+    text-align: center;
   }
+}
+
+.top-title {
+  color: #fff;
+
+  &__sub {
+    color: #fff;
+    padding-bottom: 20px;
+  }
+}
+
+.top-text {
+  color: #fff;
+  margin-top: 20px;
 }

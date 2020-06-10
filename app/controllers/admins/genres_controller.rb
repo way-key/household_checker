@@ -11,6 +11,9 @@ class Admins::GenresController < ApplicationController
     if genre.save
       redirect_to admins_genres_path
     else
+      @genres = Genre.page(params[:page]).per(20)
+      @new_genre = Genre.new
+      flash.now[:alert] = 'ジャンル名が空欄です'
       render "index"
     end
   end
@@ -25,6 +28,7 @@ class Admins::GenresController < ApplicationController
       redirect_to admins_genres_path
     else
       @genre = Genre.find(params[:id])
+      flash.now[:alert] = 'ジャンル名が空欄です'
       render "edit"
     end
   end

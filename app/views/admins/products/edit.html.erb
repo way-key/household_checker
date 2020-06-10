@@ -3,6 +3,7 @@
     <div class="row">
       <h2 class="admin-title">商品編集画面</h2>
     </div>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="row">
       <div class="col-lg-6">
         <%= attachment_image_tag @product, :image, :fill, 400, 400, format: 'jpeg', fallback: "no_image.jpg", size: '400x400' %><br>

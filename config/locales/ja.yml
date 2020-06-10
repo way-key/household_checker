@@ -1,17 +1,27 @@
 ja:
   activerecord:
-    models:
-      buy_list:
-    attributes:
-      buy_list:
-        title: 買い物リスト名
+      models:
+            buy_list:
+            user:
+            product:
+      attributes:
+            buy_list:
+                  title: 買い物リスト名
+            user:
+                  name: 名前
+                  name_kana: フリガナ
+                  email: メールアドレス
+                  password: パスワード
+                  nickname: ニックネーム
+            product:
+                  name: 商品名
   views:
       pagination:
-        first: '最初のページ'
-        last: '最後のページ'
-        previous: '前へ'
-        next: '次へ'
-        truncate: '...'
+            first: '最初のページ'
+            last: '最後のページ'
+            previous: '前へ'
+            next: '次へ'
+            truncate: '...'
   devise:
     failure:
       unauthenticated: 'ログインしてください。'

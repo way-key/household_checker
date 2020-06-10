@@ -25,7 +25,8 @@ class Users::BuyListProductsController < ApplicationController
 
   def destroy
     @buy_list_product.destroy
-    redirect_to users_buy_list_path(@buy_list_product), notice: "買い物リストを削除しました"
+    flash[:notice] = "買い物リストを削除しました"
+    redirect_back(fallback_location: root_path)
   end
 
   private

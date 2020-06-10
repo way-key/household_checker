@@ -1,4 +1,5 @@
 class Users::ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_search
 
   def top
@@ -39,6 +40,12 @@ class Users::ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
+    if @product.save
+      redirect_to users_product_path(@product), notice: "商品情報が更新されました。"
+    else
+      render "edit"
+    end
 
 
   end

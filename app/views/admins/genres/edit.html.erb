@@ -7,6 +7,7 @@
   <div class="row">
     <div class="genre-create">
       <%= form_for [:admins, @genre] do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
         <%= f.label :title, "ジャンル名", class: "genre-create__list" %>
         <%= f.text_field :title, class: "genre-create__list" %>
         <%= f.radio_button :status, :true, checked: true, class: "genre-create__list" %>

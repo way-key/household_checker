@@ -10,7 +10,11 @@ class User < ApplicationRecord
   attachment :image
 
   validates :name, presence: true
-  validates :name_kana, presence: true
+  validates :name_kana, presence: true,
+                format: {
+                  with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
+                  message: "は全角カタカナのみで入力して下さい"
+                 }
   validates :nickname, presence: true
 
 end
