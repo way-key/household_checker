@@ -14,7 +14,7 @@ class User < ApplicationRecord
                 format: {
                   with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
                   message: "は全角カタカナのみで入力して下さい"
-                 }
+                }
   validates :nickname, presence: true
 
 end

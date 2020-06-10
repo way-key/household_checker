@@ -6,26 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# adminの作成
 Admin.create(email: 'admin@admin.com', password: 'password')
+# admin/
 
-User.create(name: "遊佐太郎", name_kana: "ユーザタロウ", nickname: "ユウ", email: "test@test.com", password: "password")
+# userの作成
+10.times do |n|
+  User.create!(
+    name: Faker::Name.name,
+    name_kana: "テストユーザー",
+    nickname: Faker::Games::Pokemon.name,
+    email: Faker::Internet.email,
+    password: "password"
+  )
+end
+# user/
 
 # genreの作成
 genre_names = ['洗面用品','台所用品','風呂用品','掃除用品','その他']
 genre_names.each do |genre_name|
   Genre.create!(
     title: genre_name,
-    status: [true, false].sample
+    status: true
   )
 end
 # genre/
 
 # productの作成
-10.times do |n|
+30.times do |n|
     Product.create!(
-        genre_id: rand(1..4),
+        genre_id: Genre.all.sample.id,
         name: "サンプル商品#{n + 1}",
-        introduction: "sample text#{n + 1}",
+        introduction: "ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。",
         status: [true, false].sample
     )
 end
@@ -33,10 +45,10 @@ end
 
 # buy_listの作成
 User.find_each do |user|
-  4.times do |num|
+  4.times do |n|
     BuyList.create!(
       user_id: user.id,
-      title: "買い物リスト#{num + 1}"
+      title: "買い物リスト#{n + 1}"
     )
   end
 end
@@ -44,7 +56,7 @@ end
 
 # buy_list_productの作成
 BuyList.find_each do |buy_list|
-  6.times do |num|
+  6.times do |n|
     BuyListProduct.create!(
       buy_list_id: buy_list.id,
       product_id: Product.all.sample.id,
@@ -56,8 +68,15 @@ BuyList.find_each do |buy_list|
 end
 # buy_list_prouduct/
 
-# favoritesの作成
-# fovorites/
-
 # reviewの作成
+Product.find_each do |product|
+  1.times do |n|
+    Review.create!(
+      user_id: User.all.sample.id,
+      product_id: product.id,
+      score: rand(1..5),
+      comment: "ここにコメントが入ります。ここにコメントが入ります。ここにコメントが入ります。ここにコメントが入ります。"
+    )
+  end
+end
 # reviews/
