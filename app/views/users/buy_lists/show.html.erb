@@ -21,8 +21,8 @@
           <th></th>
           <th colspan="2">リスト商品</th>
           <th>個数</th>
-          <th>消費日数（／個）</th>
-          <th>購入期限</th>
+          <th style="width:100px;">消費日数（／個）</th>
+          <th class="table-center">購入期限</th>
           <th></th>
         </tr>
       </thead>
@@ -30,12 +30,18 @@
         <% @buy_list_products.each do |list| %>
           <tr>
             <%= form_for [:users, list] do |f| %>
-              <td><%= f.submit "✔︎" %></td>
+              <td>
+              <%= f.button :type => "submit", style: 'border-style: none; background:none;' do %>
+                <i class='far fa-check-square'></i>
+              <% end %>
+              </td>
               <td><%= attachment_image_tag list.product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
               <td><%= link_to list.product.name, users_product_path(list.product) %></td>
               <td><%= f.select :amount,(1..10).to_a %></td>
-              <td><div class="form-group"><%= f.text_field :cost, class: "form-control" %></div></td>
-              <td>
+              <td class="form-group">
+                <%= f.text_field :cost, class: "form-control" %>
+              </td>
+              <td class="table-center">
                 <% if list.cost.blank? %>
                   <%= list.updated_at.strftime("%Y/%m/%d") %>
                   <p>※前回購入日</p>
@@ -47,7 +53,7 @@
               <%# 商品のページから追加した時点で、購入期限は設定していないため、有り無しかで分岐 %>
               </td>
             <% end %>
-            <td><%= link_to "削除", users_buy_list_product_path(list), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
+            <td><%= link_to " 削除", users_buy_list_product_path(list), method: :delete, class: "btn btn-danger fas fa-trash-alt", data: {confirm: "削除してもよろしいですか？"} %></td>
           </tr>
         <% end %>
       </tbody>

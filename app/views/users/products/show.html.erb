@@ -31,9 +31,9 @@
           </div>
           <div class="product-button">
             <% if @product.favorited_by?(current_user) %>
-              <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-outline-danger" %>
+              <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-outline-danger far fa-star" %>
             <% else %>
-              <%= link_to "お気に入りに追加", users_favorites_path(product_id: @product.id), method: :post, class: "btn btn-outline-warning" %>
+              <%= link_to "お気に入りに追加", users_favorites_path(product_id: @product.id), method: :post, class: "btn btn-outline-warning far fa-star" %>
             <% end %>
           </div>
           <div class="product-button">

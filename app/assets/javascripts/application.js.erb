@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery
 //= require_tree .
 
@@ -21,9 +20,9 @@
 $(function () {
   $('#star').raty({　　　
     size: 36,
-    starOff: "/assets/star-off.png",
-    starOn: "/assets/star-on.png",
-    starHalf: "#{asset_path('star-half.png')}",
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
     scoreName: 'review[score]',
   //  reviewカラムに保存する
   });
