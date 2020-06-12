@@ -9,7 +9,7 @@
         <% @products.each do |product| %>
           <div class="product-list__item">
               <%= link_to users_product_path(product) do %>
-              　<div class=""><%= attachment_image_tag product, :image, :fill, 200, 200, fallback: "no_image.jpg", size: '250x250' %></div>
+              　<div class=""><%= attachment_image_tag product, :image, :fill, 240, 240, fallback: "no_image.jpg", size: '240x240' %></div>
                 <div>【 商品名 】<%= product.name%></div>
                 <div>【ジャンル】<%= product.genre.title %></div>
               <% end %>
