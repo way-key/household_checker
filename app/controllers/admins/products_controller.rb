@@ -15,7 +15,7 @@ end
 def update
   @product = Product.find(params[:id])
   if @product.update(product_params)
-    redirect_to admins_products_path
+    redirect_to admins_products_path, notice: "商品ステータスを変更しました"
   else
     render "edit"
   end

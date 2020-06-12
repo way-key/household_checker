@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <h2 class="admin-title">レビュー　一覧</h2>
   </div>
@@ -6,6 +6,7 @@
     <table class="table">
       <thead>
         <tr>
+          <th colspan="2" style="width: 15%;">商品</th>
           <th colspan="2" style="width: 15%;">ユーザー</th>
           <th style="width: 10%;">作成日</th>
           <th style="width: 13%;">スコア</th>
@@ -16,6 +17,8 @@
       <tbody>
         <% @reviews.each do |review| %>
         <tr>
+          <td><%= attachment_image_tag review.product, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
+          <td><%= review.product.name %></td>
           <td><%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
           <td><%= review.user.nickname %></td>
           <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
