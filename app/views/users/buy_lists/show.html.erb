@@ -42,13 +42,13 @@
                 <%= f.text_field :cost, class: "form-control" %>
               </td>
               <td class="table-center">
-                <% if list.cost.blank? %>
+                <% if list.cost.blank? && list.dead_line.blank? %>
+                  <p>初回購入品</p>
+                <% elsif list.cost.blank? %>
                   <%= list.updated_at.strftime("%Y/%m/%d") %>
                   <p>※前回購入日</p>
-                <% elsif list.dead_line.present? %>
-                  <%= list.dead_line.strftime("%Y/%m/%d") %>
                 <% else %>
-                  <p>初回購入品</p>
+                  <%= list.dead_line.strftime("%Y/%m/%d") %>
                 <% end %>
               <%# 商品のページから追加した時点で、購入期限は設定していないため、有り無しかで分岐 %>
               </td>
