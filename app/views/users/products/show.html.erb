@@ -8,7 +8,7 @@
 
       <div class="row">
         <div class="col-sm-6">
-          <%= attachment_image_tag @product, :image, :fill, 400, 400, format: 'jpeg', fallback: "no_image.jpg", size: '500x500' %>
+          <%= attachment_image_tag @product, :image, :fill, 400, 400, fallback: "no_image.jpg", size: '500x500' %>
         </div>
         <div class="col-sm-5 product-show">
           <h3 class="product-name">商品名：<%= @product.name %></h3>
