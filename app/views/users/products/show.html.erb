@@ -20,7 +20,7 @@
           <div class="product-addlist">
             <%= form_for [:users, @buy_list_product] do |f| %>
               <div class="form-group form-inline">
-              <%= f.label :buy_list_id, "買い物リストに追加" %>
+              <%= f.label :buy_list_id, "買い物リストに追加：" %>
               <%= f.select :buy_list_id, BuyList.where(user_id: current_user.id).map{|buy_list| [buy_list.title, buy_list.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control"  %>
               <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
               <%= f.hidden_field :product_id, value: @product.id %>
@@ -29,12 +29,10 @@
               </div>
             <% end %>
           </div>
-          <div class="product-button">
-            <% if @product.favorited_by?(current_user) %>
-              <%= link_to "お気に入りから削除", users_favorite_path(product_id: @product.id), method: :delete, class: "btn btn-outline-danger far fa-star" %>
-            <% else %>
-              <%= link_to "お気に入りに追加", users_favorites_path(product_id: @product.id), method: :post, class: "btn btn-outline-warning far fa-star" %>
-            <% end %>
+          <div class="product-button" id="favorites_buttons_<%= @product.id %>">
+
+              <%= render 'users/products/favorite_button', product: @product %>
+
           </div>
           <div class="product-button">
             <%= link_to "商品情報の編集", edit_users_product_path(@product), class: "btn btn-primary" %>
