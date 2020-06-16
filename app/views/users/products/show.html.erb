@@ -55,8 +55,10 @@
             <div class="review-create__comment form-group">
               <%= f.label :comment, "コメント" %>
               <%= f.text_area :comment, class:"form-control" %><br>
+              <strong>※ 星評価・コメントのどちらかは必ず入力ください。コメントのみの場合、評価は内容から自動採点します。</strong>
               <%= f.submit "コメントを作成", class:"btn btn-success form-control" %>
             </div>
+　　
           <% end %>
         <% elsif current_user.status == 1 %>
           <strong style="color:red;">※あなたは管理者権限によりコメントを制限されています。</strong>
