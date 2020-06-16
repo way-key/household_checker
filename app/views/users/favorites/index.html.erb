@@ -13,18 +13,13 @@
             </tr>
           </thead>
           <tbody>
-              <tr>
-                <% @favorites.each do |f| %>
-                  <td><%= attachment_image_tag f.product, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
-                  <td><%= f.product.name %></td>
-                  <td>
-                    <% if f.product_by?(current_user) %>
-                      <%= link_to "お気に入り削除", users_favorite_path(id: f.id, product_id: f.product.id), method: :delete, class: "btn btn-info" %>
-                    <% end %>
-                  </td>
-                  <td></td>
-                <% end %>
+            <% @favorites.each do |f| %>
+            　<tr id="#favorite_buttons_<%= f.product.id %>">
+
+                <%= render 'users/favorites/favorite_button', f: f %>
+
               </tr>
+            <% end %>
           </tbody>
         </table>
       <% else %>
