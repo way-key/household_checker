@@ -1,9 +1,0 @@
-<td>
-　<%= attachment_image_tag f.product, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %>
-</td>
-<td><%= link_to f.product.name, users_product_path(f.product.id) %></td>
-<td>
-  <% if f.product_by?(current_user) %>
-    <%= link_to "お気に入り削除", users_product_favorites_path(product_id: f.product.id), method: :delete, remote: true, class: "btn btn-outline-danger far fa-star" %>
-  <% end %>
-</td>

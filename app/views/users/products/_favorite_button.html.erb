@@ -1,4 +1,4 @@
-<% if product.favorited_by?(current_user) %>
+<% if product.favorites.where(user_id: current_user.id).exists? %>
   <%= link_to "お気に入りから削除",  users_product_favorites_path(product_id: product.id), method: :delete, remote: true, class: "btn btn-outline-danger far fa-star" %>
 <% else %>
   <%= link_to "お気に入りに追加", users_product_favorites_path(product_id: product.id), method: :post, remote: true, class: "btn btn-outline-warning far fa-star" %>
