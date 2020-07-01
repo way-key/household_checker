@@ -13,6 +13,7 @@ class Users::FavoritesController < ApplicationController
 
   def destroy
     @product = Product.find(params[:product_id])
+    @favorites = current_user.favorites.page(params[:page]).per(20)
     favorite = current_user.favorites.find_by(product_id: @product.id)
     favorite.destroy
   end

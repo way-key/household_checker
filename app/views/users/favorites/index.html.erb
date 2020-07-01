@@ -4,31 +4,10 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6 offset-3">
-      <% if @favorites.present? %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th colspan="2">商品</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @favorites.each do |f| %>
-            　<tr>
-                <td>
-                　<%= attachment_image_tag f.product, :image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size: '80x80' %>
-                </td>
-                <td><%= link_to f.product.name, users_product_path(f.product.id) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <h3 class="favorite-less">
-          お気に入りリストがありません。<br>
-          商品ページから追加してみましょう
-        </h3>
-      <% end %>
+    <div class="col-sm-6 offset-3" id="favorites_index">
+
+        <%= render 'users/favorites/form', favorites: @favorites %>
+
     </div>
   </div>
 

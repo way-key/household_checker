@@ -1,1 +1,2 @@
 $("#favorites_buttons_<%= @product.id %>").html("<%= j(render 'users/products/favorite_button', product: @product) %>");
+$("#favorites_index").html("<%= j(render 'users/favorites/form', favorites: @favorites) %>");
