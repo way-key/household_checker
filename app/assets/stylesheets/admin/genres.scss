@@ -9,3 +9,19 @@
     margin-right: 5px;
   }
 }
+
+.genre-list {
+  margin: 0 auto;
+
+  &__column {
+    width: 150px;
+  }
+}
+
+.genre-update {
+  margin: 0 auto 30px;
+
+  &__list {
+    margin-right: 10px;
+  }
+}

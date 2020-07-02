@@ -1,20 +1,24 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="row">
     <h2 class="admin-title">ジャンル編集</h2>
   </div>
 
   <div class="row">
-    <div class="genre-create">
+    <div class="genre-update">
       <%= form_with model: @genre, url: admins_genre_path, local: true do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.label :title, "ジャンル名", class: "genre-create__list" %>
-      <%= f.text_field :title, class: "genre-create__list" %>
-      <%= f.radio_button :status, :true, class: "genre-create__list" %>
-      <%= f.label :status, "有効", class: "genre-create__list" %>
-      <%= f.radio_button :status, :false, class: "genre-create__list" %>
-      <%= f.label :status, "無効", class: "genre-create__list" %>
-      <%= f.submit "更新する", class: "btn btn-primary" %>
+        <div class="form-inline">
+        <%= render 'layouts/error_messages', model: f.object %>
+        <%= f.label :title, "ジャンル名：", class: "genre-update__list" %>
+        <%= f.text_field :title, class: "genre-update__list form-control"  %>
+        <div class="form-check-inline">
+        <%= f.radio_button :status, :true, class: "genre-update__list form-check-input"  %>
+        <%= f.label :status, "有効", class: "genre-update__list form-check-label"  %>
+        <%= f.radio_button :status, :false, class: "genre-update__list form-check-input"  %>
+        <%= f.label :status, "無効", class: "genre-update__list form-check-label"  %>
+        </div>
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+        </div>
       <% end %>
     </div>
   </div>

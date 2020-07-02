@@ -1,3 +1,34 @@
 // Place all the styles related to the admin::reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.review-search {
+  margin: 0 auto 40px;
+
+  &__field {
+    margin-right: 20px;
+  }
+}
+
+.review-list {
+
+  &__product {
+    width: 15%;
+  }
+
+  &__user {
+    width: 10%;
+  }
+
+  &__create {
+    width: 10%;
+  }
+
+  &__score {
+    width: 13%;
+  }
+
+  &__status {
+    width: 20%;
+  }
+}

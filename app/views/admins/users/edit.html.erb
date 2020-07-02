@@ -6,13 +6,14 @@
   <%= render 'users/users/profile_form', user: @user %>
 
   <div class="row">
-    <div class="col-sm-3 offset-9">
-      <div class="form-inline">
-        <%= form_with model: @user, url: admins_user_path, local: true do |f| %>
-        <%= f.select :status, [["制限なし",0],["コメント制限",1]], {}, class: "form-control" %>
-        <%= f.submit "更新", class: "btn btn-primary"%>
-        <% end %>
-      </div>
+    <div class="authority-form">
+      <%= form_with model: @user, url: admins_user_path, local: true do |f| %>
+        <div class="form-inline">
+          <%= f.label :status, "コメント権限：" %>
+          <%= f.select :status, [["制限なし",0],["コメント制限",1]], {}, class: "form-control authority-form__select" %>
+          <%= f.submit "更新", class: "btn btn-primary"%>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -34,16 +35,7 @@
         <tr>
           <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
           <td id="star-rate-<%= review.id %>"></td>
-          <script>
-            $('#star-rate-<%= review.id %>').raty({
-              size: 36,
-              starOff: '<%= asset_path('star - off.png ') %>',
-              starOn: '<%= asset_path('star - on.png ') %>',
-              starHalf: '<%= asset_path('star - half.png ') %>',
-              readOnly: true,
-              score: < %= review.score % > ,
-            });
-          </script>
+            <%= render 'shared/star', review: review %>
           <td><%= review.comment %></td>
         </tr>
         <% end %>

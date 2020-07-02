@@ -31,12 +31,12 @@
         <%= f.label :status, "表示ステータス" %>
         <%= f.select :status, [["表示中", true],["非表示", false]], {}, {class: "form-control"} %>
       </div>
-    </>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="mx-auto">
-      <%= f.submit "変更する", class: "btn btn-primary", style: "margin: 50px;" %>
+  <div class="row update-btn">
+    <div class="col text-center">
+      <%= f.submit "変更する", class: "btn btn-primary w-25" %>
     </div>
   </div>
   <% end %>

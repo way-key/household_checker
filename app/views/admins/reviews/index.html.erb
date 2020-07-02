@@ -1,17 +1,32 @@
 <div class="container-fluid">
   <div class="row">
-    <h2 class="admin-title">レビュー　一覧</h2>
+    <h2 class="admin-title">レビュー一覧</h2>
   </div>
+
+  <div class="row">
+    <div class="review-search">
+      <%= search_form_for(@q, url: admins_reviews_path) do |f| %>
+      <div class="form-inline">
+        <%= f.label :score, "スコア：", class: "review-search__field" %>
+        <%= f.select :score_eq, (1..5), {}, class: "form-control review-search__field" %>
+        <%= f.label :comment, "コメント：", class: "review-search__field" %>
+        <%= f.search_field :comment_cont, class: "form-control review-search__field" %>
+        <%= f.submit "検索", class: "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row">
     <table class="table">
       <thead>
-        <tr>
-          <th colspan="2" style="width: 15%;">商品</th>
-          <th colspan="2" style="width: 15%;">ユーザー</th>
-          <th style="width: 10%;">作成日</th>
-          <th style="width: 13%;">スコア</th>
-          <th  style="width: 30%;">コメント</th>
-          <th colspan="2">ステータス</th>
+        <tr class="review-list">
+          <th colspan="2" class="review-list__product">商品</th>
+          <th class="review-list__user">ユーザー</th>
+          <th class="review-list__create">作成日</th>
+          <th class="review-list__score">スコア</th>
+          <th>コメント</th>
+          <th colspan="2" class="review-list__status">ステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -19,20 +34,10 @@
         <tr>
           <td><%= attachment_image_tag review.product, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
           <td><%= review.product.name %></td>
-          <td><%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
           <td><%= review.user.nickname %></td>
           <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
           <td id="star-rate-<%= review.id %>"></td>
-          <script>
-            $('#star-rate-<%= review.id %>').raty({
-              size: 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= review.score %>,
-            });
-          </script>
+            <%= render 'shared/star', review: review %>
           <td><%= review.comment %></td>
           <%= form_for [:admins, review] do |f| %>
             <td class="form-group"><%= f.select :status, [["非表示", false],["表示中", true]], {}, class: "form-control" %></td>
@@ -43,4 +48,5 @@
       </tbody>
     </table>
   </div>
+<%= paginate @reviews, class: "paginate" %>
 </div>

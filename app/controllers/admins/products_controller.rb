@@ -5,7 +5,8 @@ def top
 end
 
 def index
-  @products = Product.page(params[:page]).per(20)
+  @q = Product.ransack(params[:q])
+  @products = @q.result(distinct: true).page(params[:page]).per(20)
 end
 
 def edit
@@ -17,6 +18,7 @@ def update
   if @product.update(product_params)
     redirect_to admins_products_path, notice: "商品ステータスを変更しました"
   else
+
     render "edit"
   end
 
