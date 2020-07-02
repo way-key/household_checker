@@ -4,30 +4,10 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6 offset-3">
-      <% if @favorites.present? %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th colspan="3">商品</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @favorites.each do |f| %>
-            　<tr id="#favorite_buttons_<%= f.product.id %>">
+    <div class="col-sm-6 offset-3" id="favorites_index">
 
-                <%= render 'users/favorites/favorite_button', f: f %>
+        <%= render 'users/favorites/form', favorites: @favorites %>
 
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <h3 class="favorite-less">
-          お気に入りリストがありません。<br>
-          商品ページから追加してみましょう
-        </h3>
-      <% end %>
     </div>
   </div>
 
