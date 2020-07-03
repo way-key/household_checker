@@ -7,13 +7,14 @@
       <h2 class="user-title">商品一覧</h2>
       <div class="product-list">
         <% @products.each do |product| %>
-          <div class="product-list__item">
-              <%= link_to users_product_path(product) do %>
-              　<div class=""><%= attachment_image_tag product, :image, :fill, 240, 240, fallback: "no_image.jpg", size: '240x240' %></div>
-                <div>【 商品名 】<%= product.name%></div>
-                <div>【ジャンル】<%= product.genre.title %></div>
-              <% end %>
+        <div class="card product-list__item">
+          <div class="card-img-top"><%= attachment_image_tag product, :image, :fill, 240, 240, fallback: "no_image.jpg", size: '240x240' %></div>
+          <div class="card-body">
+            <h6 class="card-title">商品名：<%= product.name%></h6>
+            <p class="card-subtitle">ジャンル：<%= product.genre.title %></p>
+            <p class="card-link"><%= link_to "商品ページへ", users_product_path(product) %></p>
           </div>
+        </div>
         <% end %>
       </div>
       <%= paginate @products, class: "paginate" %>

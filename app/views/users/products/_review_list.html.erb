@@ -1,0 +1,18 @@
+<% reviews.each do |review| %>
+<div class="review-list__user">
+  <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %>
+  <%= review.user.nickname %>
+  <%= review.created_at.strftime("%Y/%m/%d") %>
+</div>
+
+<div class="review-list__score">
+  評価：<span id="star-rate-<%= review.id %>"></span>
+  <%= render 'shared/star', review: review %>
+  <%# コメント一覧に星表示%>
+</div>
+
+<div class="review-list__comment">
+  <p>コメント：</p>
+  <%= review.comment %>
+</div>
+<% end %>
