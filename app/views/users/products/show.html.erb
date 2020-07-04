@@ -19,19 +19,19 @@
           <p class="product-genre">商品ジャンル：<%= @product.genre.title %></p>
           <div class="product-addlist">
             <%= form_for [:users, @buy_list_product] do |f| %>
-              <div class="form-group form-inline">
+            <div class="form-inline">
               <%= f.label :buy_list_id, "買い物リストに追加：" %>
               <%= f.select :buy_list_id, BuyList.where(user_id: current_user.id).map{|buy_list| [buy_list.title, buy_list.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control"  %>
               <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
               <%= f.hidden_field :product_id, value: @product.id %>
               <%= f.hidden_field :amount, :value => 1 %>
               <%= f.submit "追加", class: "btn btn-primary" %>
-              </div>
+            </div>
             <% end %>
           </div>
           <div class="product-button" id="favorites_buttons_<%= @product.id %>">
 
-              <%= render 'users/products/favorite_button', product: @product %>
+            <%= render 'users/products/favorite_button', product: @product %>
 
           </div>
           <div class="product-button">
@@ -44,51 +44,36 @@
         <h3 class="review-create__title">評価する</h3>
 
         <% if current_user.status == 0 %>
-          <%= form_for [:users, @review] do |f| %>
-            <%= f.hidden_field :product_id, value: @product.id %>
-            <div class="review-create__score">
-              <div id="star">
-                <%= f.label :score,'評価 '%>
-                <%= f.hidden_field :score, id: :review_star, class: "form-control" %>
-              </div>
-            </div>
-            <div class="review-create__comment form-group">
-              <%= f.label :comment, "コメント" %>
-              <%= f.text_area :comment, class:"form-control" %><br>
-              <strong>※ 星評価・コメントのどちらかは必ず入力ください。コメントのみの場合、評価は内容から自動採点します。</strong>
-              <%= f.submit "コメントを作成", class:"btn btn-success form-control" %>
-            </div>
-　　
-          <% end %>
+        <%= form_with model: @review, url: users_reviews_path do |f| %>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <div class="review-create__score">
+          <div id="star">
+            <%= f.label :score,'評価 '%>
+            <%= f.hidden_field :score, id: :review_star, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :comment, "コメント" %>
+          <%= f.text_area :comment, class:"form-control" %><br>
+          <strong>※ 星評価・コメントのどちらかは必ず入力ください。コメントのみの場合、評価は内容から自動採点します。</strong>
+          <%= f.submit "コメントを作成", class:"btn btn-success form-control" %>
+        </div>
+        <% end %>
         <% elsif current_user.status == 1 %>
-          <strong style="color:red;">※あなたは管理者権限によりコメントを制限されています。</strong>
+        <strong style="color:red;">※あなたは管理者権限によりコメントを制限されています。</strong>
         <% end %>
       </div>
 
       <div class="review-list">
-      <% if @product.reviews.present? %>
+        <% if @product.reviews.present? %>
         <h3 class="review-list__title">評価一覧</h3>
 
-        <% @reviews.each do |review| %>
-          <div class="review-list__user">
-            <%= attachment_image_tag review.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %>
-            <%= review.user.nickname %>
-            <%= review.created_at.strftime("%Y/%m/%d") %>
-          </div>
+        <div id="review_index">
+          <%= render "users/products/review_list", reviews: @reviews %>
+        </div>
 
-          <div class="review-list__score">
-            評価：<span id="star-rate-<%= review.id %>"></span>
-              <%= render 'shared/star', review: review %>
-              <%# コメント一覧に星表示%>
-          </div>
-
-          <div class="review-list__comment">
-            <p>コメント：</p>
-            <%= review.comment %>
-          </div>
-        <% end %>
         <%= paginate @reviews, class: "paginate" %>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>

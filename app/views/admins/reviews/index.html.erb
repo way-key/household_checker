@@ -37,16 +37,16 @@
           <td><%= review.user.nickname %></td>
           <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
           <td id="star-rate-<%= review.id %>"></td>
-            <%= render 'shared/star', review: review %>
+          <%= render 'shared/star', review: review %>
           <td><%= review.comment %></td>
           <%= form_for [:admins, review] do |f| %>
-            <td class="form-group"><%= f.select :status, [["非表示", false],["表示中", true]], {}, class: "form-control" %></td>
-            <td><%= f.submit "更新", class: "btn btn-primary" %></td>
+          <td class="form-group"><%= f.select :status, [["非表示", false],["表示中", true]], {}, class: "form-control" %></td>
+          <td><%= f.submit "更新", class: "btn btn-primary" %></td>
           <% end %>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-<%= paginate @reviews, class: "paginate" %>
+  <%= paginate @reviews, class: "paginate" %>
 </div>
