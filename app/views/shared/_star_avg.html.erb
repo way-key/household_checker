@@ -1,10 +1,10 @@
 <script>
-  $('#star-rate-<%= review.id %>').raty({
+  $('#star-avg-<%= product.id %>').raty({
     size: 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
     starHalf: '<%= asset_path('star-half.png') %>',
     readOnly: true,
-    score: <%= review.score %> ,
+    score: <%= product.reviews.average(:score).to_f.round(1) %> ,
   });
 </script>

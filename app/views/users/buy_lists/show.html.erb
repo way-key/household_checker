@@ -15,6 +15,7 @@
   </div>
 
   <div class="row">
+    <% if @buy_list_products.present? %>
     <table class="table">
       <thead>
         <tr>
@@ -60,5 +61,11 @@
         <% end %>
       </tbody>
     </table>
+    <% else %>
+    <h3 class="mx-auto">
+      登録されている商品がありません。<br>
+      商品ページから追加してみましょう
+    </h3>
+    <% end %>
   </div>
 </div>

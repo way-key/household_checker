@@ -35,6 +35,7 @@ class Users::ProductsController < ApplicationController
     if @product.save
       redirect_to users_products_path
     else
+      flash.now[:alert] = '商品登録に失敗しました。内容に誤りがあります'
       render "new"
     end
   end
@@ -44,6 +45,7 @@ class Users::ProductsController < ApplicationController
     if @product.save
       redirect_to users_product_path(@product), notice: "商品情報が更新されました。"
     else
+      flash.now[:alert] = '商品更新に失敗しました。内容に誤りがあります'
       render "edit"
     end
 

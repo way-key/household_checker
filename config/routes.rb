@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get "search", to: "products#search", as:"products_search"
     resources :users, only: [:show, :edit, :update]
     resources :favorites, only: [:index]
+    get "guide", to: 'homes#guide'
   end
 
 

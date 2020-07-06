@@ -17,7 +17,9 @@
             <%= @product.introduction %>
           </p>
           <p class="product-genre">商品ジャンル：<%= @product.genre.title %></p>
+
           <div class="product-addlist">
+            <% if current_user.buy_lists.present? %>
             <%= form_for [:users, @buy_list_product] do |f| %>
             <div class="form-inline">
               <%= f.label :buy_list_id, "買い物リストに追加：" %>
@@ -27,6 +29,7 @@
               <%= f.hidden_field :amount, :value => 1 %>
               <%= f.submit "追加", class: "btn btn-primary" %>
             </div>
+            <% end %>
             <% end %>
           </div>
           <div class="product-button" id="favorites_buttons_<%= @product.id %>">

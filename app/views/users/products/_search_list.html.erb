@@ -7,31 +7,18 @@
         <%= f.search_field :name_cont, class:"form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :jan_code, "バーコード" %>
+        <%= f.label :jan_code, "JANコード" %>
         <%= f.search_field :jan_code_cont, class:"form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :genre_id, "ジャンル" %>
-        <%= f.select :genre_id_eq, Genre.where(status: true).map{|genre| [genre.title, genre.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control" %>
         <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
+        <%= f.select :genre_id_eq, @genres.map{|genre| [genre.title, genre.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control" %>
       </div>
       <div class="product-button">
         <%= f.submit "検索", class: "btn btn-primary" %>
       </div>
       <% end %>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="search-title">ジャンル検索</h3>
-      </div>
-      <ul class="list-group">
-        <% @genres.each do |genre| %>
-        <li class="list-group-item" style="text-align: center;">
-          <%= link_to genre.title, users_products_search_path(q: { genre_id_eq: genre.id }) %>
-          <%# q:にジャンルidを持たせ、searchメソッドへ遷移 %>
-        </li>
-        <% end %>
-      </ul>
     </div>
     <div class="product-button">
       <%= link_to "商品の新規作成", new_users_product_path, class: "btn btn-success" %>

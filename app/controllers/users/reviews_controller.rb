@@ -24,6 +24,7 @@ class Users::ReviewsController < ApplicationController
     params.require(:review).permit(:user_id, :product_id, :score, :comment)
   end
 
+  # Google Natural Language APIの点数を基に、スコアの点数を決める
   def comment_check
     case Language.get_data(review_params[:comment])
     when -1.0..-0.6
@@ -37,7 +38,6 @@ class Users::ReviewsController < ApplicationController
     when 0.6..1.0
       5
     end
-    # Google Natural Language APIの点数を基に、スコアの点数を決める
   end
 
 end
