@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-    resources :products, only: [:index, :edit, :update]
+    resources :products, only: [:index, :edit, :update, :destroy]
     get '', to: 'products#top'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :reviews, only: [:index, :update]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   namespace :users do
     resources :buy_lists, only: [:index, :show, :create, :update, :destroy]
     resources :buy_list_products, only: [:create, :update, :destroy]
-    resources :products, only: [:new, :index, :show, :edit, :create, :update] do
+    resources :products, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
     end
     resources :reviews, only: [:create, :destroy]

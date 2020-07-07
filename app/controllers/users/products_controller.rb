@@ -49,6 +49,9 @@ class Users::ProductsController < ApplicationController
       render "edit"
     end
 
+    def destroy
+
+    end
 
   end
 

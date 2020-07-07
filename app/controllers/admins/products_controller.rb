@@ -22,6 +22,9 @@ def update
     render "edit"
   end
 
+  def destroy
+
+  end
 end
 
 private
