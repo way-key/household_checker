@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :reviews, only: [:index, :update]
     resources :users, only: [:index, :show, :edit, :update]
+    get "products_search/:id", to: "products#search", as:"products_search"
+    get "reviews_search/:id", to: "reviews#search", as:"reviews_search"
   end
 
   namespace :users do

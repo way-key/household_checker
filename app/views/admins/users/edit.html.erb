@@ -18,29 +18,10 @@
   </div>
 
   <div class="row">
-    <h3 class="admin-title__sub">コメント一覧</h3>
-  </div>
-
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th style="width: 15%;">作成日</th>
-          <th style="width: 15%;">スコア</th>
-          <th>コメント</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @reviews.each do |review| %>
-        <tr>
-          <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
-          <td id="star-rate-<%= review.id %>"></td>
-          <%= render 'shared/star', review: review %>
-          <td><%= review.comment %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="mx-auto">
+      <%= link_to "会員レビュー一覧", admins_reviews_search_path(@user), class: "btn btn-primary create-reviews" %>
+      <%= link_to "会員作成商品一覧", admins_products_search_path(@user), class: "btn btn-primary create-products" %>
+    </div>
   </div>
 
   <%= paginate @reviews, class: "paginate" %>

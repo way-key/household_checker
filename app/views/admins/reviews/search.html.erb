@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-    <h2 class="admin-title">レビュー一覧</h2>
+    <h2 class="admin-title">レビュー一覧（<%= @user.name %>）</h2>
   </div>
 
   <div class="row">
     <div class="review-search">
-      <%= search_form_for(@q, url: admins_reviews_path) do |f| %>
+      <%= search_form_for(@q, url: admins_reviews_search_path(@user)) do |f| %>
       <div class="form-inline">
         <%= f.label :score, "スコア：", class: "review-search__field" %>
         <%= f.select :score_eq, (1..5), {include_blank: '全て'}, class: "form-control review-search__field" %>
@@ -18,5 +18,11 @@
   </div>
 
   <%= render "admins/reviews/reviews_form", reviews: @reviews %>
+
+  <div class="row">
+    <div class="mx-auto">
+      <%= link_to "会員ページへ戻る", edit_admins_user_path(@user), class: "btn btn-primary user-page" %>
+    </div>
+  </div>
 
 </div>

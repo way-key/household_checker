@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="product-list">
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="2" class="product-list__name"><%= sort_link(q, :name, "商品名") %></th>
+          <th class="product-list__genre"><%= sort_link(q, :genre_id, "ジャンル") %></th>
+          <th class="product-list__status"><%= sort_link(q, :status, "ステータス") %></th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.each do |product| %>
+        <tr>
+          <td><%= attachment_image_tag product, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
+          <td><%= product.name %></td>
+          <td><%= product.genre.title %></td>
+          <td><%= product.status ? "表示中" : "" %></td>
+          <td><%= link_to "編集", edit_admins_product_path(product), class: "btn btn-primary" %></td>
+          <td><%= link_to "削除", admins_product_path(product), method: :delete, class: "btn btn-danger", data: {confirm: "削除してもよろしいですか？"} %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= paginate @products, class: "paginate" %>
