@@ -1,6 +1,7 @@
 class Users::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_search
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def top
 
@@ -11,16 +12,12 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(status: true).page(params[:page]).per(8)
-  end
-
-  def search
     @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(8)
-    render "index"
   end
 
   def show
     @product = Product.find(params[:id])
+    @user = @product.user_id
     @buy_list_product = BuyListProduct.new
     @review = @product.reviews.new
     @reviews = @product.reviews.where(status: true).page(params[:page]).per(10).reverse_order
@@ -62,8 +59,16 @@ class Users::ProductsController < ApplicationController
       @q = Product.ransack(params[:q])
     end
 
+    def set_user
+      @user = @product.users
+      if current_user.id != @user.id
+        flash[:notice] = "作成者以外はアクセス権がありません"
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
     def product_params
-      params.require(:product).permit(:genre_id, :name, :image, :introduction, :jan_code)
+      params.require(:product).permit(:genre_id, :name, :image, :introduction, :jan_code, :user_id)
     end
 
 end

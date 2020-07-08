@@ -1,7 +1,7 @@
   <div class="col-sm-3">
     <div>
       <h3 class="search-title">商品検索</h3>
-      <%= search_form_for(@q, url:users_products_search_path) do |f| %>
+      <%= search_form_for(@q, url: users_products_path) do |f| %>
       <div class="form-group">
         <%= f.label :name, "商品名" %>
         <%= f.search_field :name_cont, class:"form-control" %>
