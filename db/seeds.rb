@@ -38,7 +38,8 @@ end
         genre_id: Genre.all.sample.id,
         name: "サンプル商品#{n + 1}",
         introduction: "ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。",
-        status: [true, false].sample
+        status: [true, false].sample,
+        user_id: User.all.sample.id
     )
 end
 # product/

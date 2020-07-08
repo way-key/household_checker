@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :buy_lists, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :products, dependent: :destroy
   attachment :image
 
   validates :name, presence: true
