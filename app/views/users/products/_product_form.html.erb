@@ -22,6 +22,10 @@
         <%= f.label :jan_code, "JANコード" %>
         <%= f.text_field :jan_code, class: "form-control" %>
       </div>
+      <div class="form-group">
+        <%= f.label :status, "表示ステータス" %>
+        <%= f.select :status, [["表示中", true],["非表示", false]], {}, {class: "form-control"} %>
+      </div>
       <div class="product-button">
         <%= f.submit "実行", class: "btn btn-primary" %>
         <div>

@@ -24,11 +24,12 @@ class Users::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
+
   end
 
   def create
     @product = Product.new(product_params)
+    @product.user_id = current_user.id
     if @product.save
       redirect_to users_products_path
     else
@@ -38,18 +39,12 @@ class Users::ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    if @product.save
+    if @product.update(product_params)
       redirect_to users_product_path(@product), notice: "商品情報が更新されました。"
     else
       flash.now[:alert] = '商品更新に失敗しました。内容に誤りがあります'
       render "edit"
     end
-
-    def destroy
-
-    end
-
   end
 
     private
@@ -60,15 +55,15 @@ class Users::ProductsController < ApplicationController
     end
 
     def set_user
-      @user = @product.users
+      @product = Product.find(params[:id])
+      @user = @product.user
       if current_user.id != @user.id
-        flash[:notice] = "作成者以外はアクセス権がありません"
-        redirect_back(fallback_location: root_path)
+        redirect_to users_products_path, alert: "作成者以外はアクセス権がありません。"
       end
     end
 
     def product_params
-      params.require(:product).permit(:genre_id, :name, :image, :introduction, :jan_code, :user_id)
+      params.require(:product).permit(:genre_id, :name, :image, :introduction, :jan_code, :user_id, :status)
     end
 
 end

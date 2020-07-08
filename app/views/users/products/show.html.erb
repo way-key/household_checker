@@ -11,7 +11,11 @@
           <%= attachment_image_tag @product, :image, :fill, 400, 400, fallback: "no_image.jpg", size: '500x500' %>
         </div>
         <div class="col-sm-5 product-show">
-          <h3 class="product-name">商品名：<%= @product.name %></h3>
+          <h3 class="product-name">商品名：<%= @product.name %>
+            <% if @product.status == false %>
+            <br>(非表示中)
+            <% end %>
+          </h3>
           <p class="product-introduction">
             商品説明：<br>
             <%= @product.introduction %>
@@ -37,12 +41,15 @@
             <%= render 'users/products/favorite_button', product: @product %>
 
           </div>
+          <% if @user == current_user.id %>
           <div class="product-button">
             <%= link_to "商品情報の編集", edit_users_product_path(@product), class: "btn btn-primary" %>
           </div>
+          <% end %>
         </div>
       </div>
 
+      <% if @user != current_user.id %>
       <div class="review-create">
         <h3 class="review-create__title">評価する</h3>
 
@@ -66,6 +73,7 @@
         <strong style="color:red;">※あなたは管理者権限によりコメントを制限されています。</strong>
         <% end %>
       </div>
+      <% end %>
 
       <div class="review-list">
         <% if @product.reviews.present? %>
