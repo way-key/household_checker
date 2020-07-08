@@ -16,15 +16,17 @@ end
 def update
   @product = Product.find(params[:id])
   if @product.update(product_params)
-    redirect_to admins_products_path, notice: "商品ステータスを変更しました"
+    redirect_to admins_products_path, notice: "商品：#{@product.name}　が編集されました。"
   else
 
     render "edit"
   end
+end
 
-  def destroy
-
-  end
+def destroy
+  @product = Product.find(params[:id])
+  @product.destroy
+  redirect_to admins_products_path, notice: "商品：#{@product.name}　が削除されました。"
 end
 
 private
