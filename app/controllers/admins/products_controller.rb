@@ -1,5 +1,6 @@
 class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :path_referer, only: [:edit, :destroy]
 
   def top
   end
@@ -17,13 +18,22 @@ class Admins::ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    # searchアクションからの遷移で変数を追加
+    if path[:action] == "search"
+      @user = @product.user_id
+    end
   end
 
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:notice] = "商品：#{@product.name}　が編集されました。"
-      transition_select
+      # params[:select_user]の有無でリダイレクト先を選択
+      if params[:select_user].present?
+        redirect_to admins_products_search_path(@product.user)
+      else
+        redirect_to admins_products_path
+      end
     else
       render "edit"
     end
@@ -32,9 +42,13 @@ class Admins::ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    path = Rails.application.routes.recognize_path(request.referer)
     flash[:notice] = "商品：#{@product.name}　が削除されました。"
-    transition_select
+    # 遷移元によってリダイレクト先を選択
+    if path[:action] == "index"
+      redirect_to admins_products_path
+    else
+      redirect_to admins_products_search_path(@product.user)
+    end
   end
 
   private
@@ -44,13 +58,8 @@ class Admins::ProductsController < ApplicationController
   end
 
   # 遷移元によってリダイレクト先を選択
-  def transition_select
+  def path_referer
     path = Rails.application.routes.recognize_path(request.referer)
-    if path[:action] == "index"
-      redirect_to admins_products_path
-    else
-      redirect_to admins_products_search_path(@product.user)
-    end
   end
 
 end

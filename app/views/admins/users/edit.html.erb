@@ -19,7 +19,8 @@
 
   <div class="row">
     <div class="mx-auto">
-      <%= link_to "会員レビュー一覧", admins_reviews_search_path(@user), class: "btn btn-primary create-reviews" %>
+      <%# レビュー一覧にはparamsを持たせて遷移させる %>
+      <%= link_to "会員レビュー一覧", admins_reviews_path(user_id: @user.id), class: "btn btn-primary create-reviews" %>
       <%= link_to "会員作成商品一覧", admins_products_search_path(@user), class: "btn btn-primary create-products" %>
     </div>
   </div>
