@@ -12,7 +12,7 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    @products = @q.result(distinct: true).where(status: true).page(params[:page]).per(8)
+    @products = @q.result(distinct: true).page(params[:page]).per(8)
   end
 
   def show
@@ -31,7 +31,7 @@ class Users::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = current_user.id
     if @product.save
-      redirect_to users_products_path
+      redirect_to users_product_path(@product), notice: "商品名：#{@product.name}　を作成しました。"
     else
       flash.now[:alert] = '商品登録に失敗しました。内容に誤りがあります'
       render "new"

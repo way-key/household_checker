@@ -22,7 +22,7 @@ class Users::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
     # ログイン中会員とページURLの会員idが一致しない場合、元のページへリダイレクト
-    unless current_user.id == @user.id
+    if current_user.id != @user.id
       flash[:notice] = "別会員ページのため、アクセス権がありません"
       redirect_back(fallback_location: root_path)
     end

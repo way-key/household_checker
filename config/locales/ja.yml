@@ -39,7 +39,9 @@ ja:
       inactive: "アカウントがアクティベートされていません。"
       #      inactive: 'Your account was not activated yet.'
       already_authenticated: "すでにログイン済みです。"
-    #      already_authenticated: "You are already signed in."
+      #      already_authenticated: "You are already signed in."
+      not_found_in_database: "無効なメールアドレスか、パスワードです。"
+      #      "Invalid %{authentication_keys} or password."
     sessions:
       signed_in: "ログインしました。"
       #      signed_in: 'Signed in successfully.'

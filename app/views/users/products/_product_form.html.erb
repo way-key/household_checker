@@ -7,7 +7,7 @@
   <div class="col-sm-5">
     <div class="product-create">
       <div class="form-group">
-        <%= f.label :name, "商品名" %>
+        <%= f.label :name, "商品名(※必須)" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
       <div class="form-group">
@@ -15,7 +15,7 @@
         <%= f.text_area :introduction, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :genre_id, "ジャンル" %>
+        <%= f.label :genre_id, "ジャンル(※必須)" %>
         <%= f.collection_select :genre_id, @genres, :id, :title, {include_blank: '--選択してください--'}, class: "form-control" %>
       </div>
       <div class="form-group">

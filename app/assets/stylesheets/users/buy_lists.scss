@@ -4,7 +4,11 @@
 
 // 共通
 .title-create {
-  margin-bottom: 20px;
+  margin: 20px auto;
+
+  &__field {
+    margin: 0 20px;
+  }
 }
 
 // show
