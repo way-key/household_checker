@@ -10,9 +10,10 @@
         <div class="card product-list__item">
           <div class="card-img-top"><%= attachment_image_tag product, :image, :fill, 240, 240, fallback: "no_image.jpg", size: '240x240' %></div>
           <div class="card-body">
-            <h5 class="card-title"><%= product.name%></h5>
-            <p class="card-subtitle">ジャンル：<%= product.genre.title %></p>
-            <p class="card-link"><%= link_to "商品ページへ", users_product_path(product) %></p>
+            <h5 class="card-title"><%= link_to product.name, users_product_path(product) %></h5>
+            <p class="card-title">ジャンル：<%= product.genre.title %></p>
+            <div class="card-title" id="star-avg-<%= product.id %>">評価平均：</div>
+            <%= render 'shared/star_avg', product: product %>
           </div>
         </div>
         <% end %>

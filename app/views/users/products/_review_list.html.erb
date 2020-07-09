@@ -7,7 +7,7 @@
 
 <div class="review-list__score">
   <%# コメント一覧に星表示%>
-  評価：<span id="star-rate-<%= review.id %>"></span>
+  <span id="star-rate-<%= review.id %>">評価：</span>
   <%= render 'shared/star', review: review %>
 </div>
 
