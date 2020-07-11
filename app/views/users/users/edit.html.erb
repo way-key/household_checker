@@ -9,8 +9,8 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-4">
       <div class="form-group">
-        <%= attachment_image_tag @user, :image, :fill, 300, 300, fallback: "no_image.jpg", size: '300x300' %><br>
-        <%= f.attachment_field :image %>
+        <%= attachment_image_tag @user, :image, :fill, 300, 300, fallback: "no_image.jpg", size: '300x300', id: "img" %><br>
+        <%= f.attachment_field :image, id: "myfile" %>
       </div>
     </div>
     <div class="col-sm-4">

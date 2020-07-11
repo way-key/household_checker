@@ -1,6 +1,5 @@
 class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :path_referer, only: [:edit, :destroy]
 
   def top
   end
@@ -19,6 +18,7 @@ class Admins::ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     # searchアクションからの遷移で変数を追加
+    path = Rails.application.routes.recognize_path(request.referer)
     if path[:action] == "search"
       @user = @product.user_id
     end
@@ -44,6 +44,7 @@ class Admins::ProductsController < ApplicationController
     @product.destroy
     flash[:notice] = "商品：#{@product.name}　が削除されました。"
     # 遷移元によってリダイレクト先を選択
+    path = Rails.application.routes.recognize_path(request.referer)
     if path[:action] == "index"
       redirect_to admins_products_path
     else
@@ -55,11 +56,6 @@ class Admins::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:genre_id, :name, :image, :introduction, :jan_code, :status)
-  end
-
-  # 遷移元によってリダイレクト先を選択
-  def path_referer
-    path = Rails.application.routes.recognize_path(request.referer)
   end
 
 end

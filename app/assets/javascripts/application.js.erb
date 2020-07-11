@@ -17,14 +17,39 @@
 
 //= require bootstrap
 
+// 評価機能のscoreが発火するよう定義
 $(function () {
   $('#star').raty({　　　
     size: 36,
     starOff: '<%= asset_path('star-off.png') %>',
     starOn: '<%= asset_path('star-on.png') %>',
     starHalf: '<%= asset_path('star-half.png') %>',
+    //  reviewカラムに保存する
     scoreName: 'review[score]',
-  //  reviewカラムに保存する
   });
 });
-// 評価機能のscoreが発火するよう定義
+
+// 商品、ユーザー画像を洗濯した際、プレビュー表示
+$(function(){
+  $('#myfile').change(function(e){
+    //ファイルオブジェクトを取得する
+    var file = e.target.files[0];
+    var reader = new FileReader();
+
+    //画像でない場合は処理終了
+    if(file.type.indexOf("image") < 0){
+      alert("画像ファイルを指定してください。");
+      return false;
+    }
+
+    //アップロードした画像を設定する
+    reader.onload = (function(file){
+      return function(e){
+        $("#img").attr("src", e.target.result);
+        $("#img").attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+
+  });
+});
