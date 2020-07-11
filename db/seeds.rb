@@ -17,7 +17,8 @@ Admin.create(email: 'admin@admin.com', password: 'password')
     name_kana: "テストユーザー",
     nickname: Faker::Games::Pokemon.name,
     email: Faker::Internet.email,
-    password: "password"
+    password: "password",
+    image: File.open("./db/images/sample_icon#{rand(1..5)}.jpg")
   )
 end
 # user/
@@ -39,7 +40,8 @@ end
         name: "サンプル商品#{n + 1}",
         introduction: "ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。ここに商品説明が入ります。",
         status: [true, false].sample,
-        user_id: User.all.sample.id
+        user_id: User.all.sample.id,
+        image: File.open("./db/images/sample_product#{rand(1..5)}.jpg")
     )
 end
 # product/
