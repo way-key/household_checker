@@ -18,7 +18,7 @@
 //= require bootstrap
 
 // 評価機能のscoreが発火するよう定義
-$(function () {
+$(document).on("turbolinks:load", function () {
   $('#star').raty({　　　
     size: 36,
     starOff: '<%= asset_path('star-off.png') %>',
