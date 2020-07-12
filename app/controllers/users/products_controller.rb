@@ -12,7 +12,8 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    @products = @q.result(distinct: true).page(params[:page]).per(8)
+    @products = @q.result(distinct: true).page(params[:page]).per(12)
+    @products_count = @q.result(distinct: true).count
   end
 
   def show

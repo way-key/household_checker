@@ -3,8 +3,8 @@
 
     <%= render 'users/products/search_list', genres: @genres, q: @q %>
 
-    <div class="col-sm-9">
-      <h2 class="user-title">商品一覧</h2>
+    <div class="col-lg-9">
+      <h2 class="user-title">商品一覧(全 <%= @products_count %>件)</h2>
       <div class="product-list">
         <% @products.each do |product| %>
         <div class="card product-list__item">

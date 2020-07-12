@@ -18,11 +18,16 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 
   &__item {
     margin: 5px;
     width: 242px;
   }
+}
+
+.tablet-search {
+  display: none;
 }
 
 // show
@@ -70,4 +75,15 @@
 // _product_form
 .product-create {
   margin: 0 20px 0 20px;
+}
+
+// レスポンシブ対応
+@media screen and (max-width: 991px) {
+  .pc-search {
+    display: none;
+  }
+
+  .tablet-search {
+    display: block;
+  }
 }
