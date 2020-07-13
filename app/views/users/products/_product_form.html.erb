@@ -1,6 +1,6 @@
+<%= form_for [:users, product] do |f| %>
 <div class="row">
   <div class="col-lg-6">
-    <%= form_for [:users, product] do |f| %>
     <%= attachment_image_tag product, :image, :fill, 400, 400, fallback: "no_image.jpg", size: '400x400', id: "img", class: "d-block mx-auto" %><br>
     <%= f.attachment_field :image, id:"myfile", class: "d-block mx-auto" %>
   </div>
@@ -28,8 +28,8 @@
       </div>
       <div class="product-button">
         <%= f.submit "実行", class: "btn btn-primary w-50" %>
-        <div>
-          <% end %>
-        </div>
       </div>
     </div>
+  </div>
+</div>
+<% end %>
