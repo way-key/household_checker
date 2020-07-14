@@ -85,54 +85,47 @@
 }
 
 // guide
+
+.guide-title {
+  margin: 50px 0 10px;
+}
+
 .guide-image1 {
   height: 600px;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   background-image: image-url("buy_list_guide1.png");
   background-size: cover;
   background-position: top center;
   border: 1px solid #000000;
-
-  &__text {
-  }
 }
 
 .guide-image2 {
   height: 600px;
   width: 100%;
-  margin-bottom: 50px;
+  margin: 50px 0 20px;
   background-image: image-url("buy_list_guide2.png");
   background-size: cover;
   background-position: top center;
   border: 1px solid #000000;
-
-  &__text {
-  }
 }
 
 .guide-image3 {
   height: 500px;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   background-image: image-url("product_guide1.png");
   background-size: cover;
   background-position: top center;
   border: 1px solid #000000;
-
-  &__text {
-  }
 }
 
 .guide-image4 {
   height: 500px;
   width: 100%;
-  margin-bottom: 50px;
+  margin: 50px 0 20px;
   background-image: image-url("product_guide2.png");
   background-size: cover;
   background-position: top center;
   border: 1px solid #000000;
-
-  &__text {
-  }
 }
