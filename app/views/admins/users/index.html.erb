@@ -2,6 +2,23 @@
   <div class="row">
     <h2 class="admin-title">会員一覧</h2>
   </div>
+
+  <div class="row">
+    <div class="user-search">
+      <%= search_form_for(@q, url: admins_users_path) do |f| %>
+      <div class="form-inline">
+        <%= f.label :name, "会員名：", class: "user-search__field" %>
+        <%= f.search_field :name_cont, class: "form-control user-search__field" %>
+        <%= f.label :nickname, "ニックネーム：", class: "user-search__field" %>
+        <%= f.search_field :nickname_cont, class: "form-control user-search__field" %>
+        <%= f.label :status, "ステータス：", class: "user-search__field" %>
+        <%= f.select :status_eq, [["制限なし",0],["コメント制限",1]], {}, class: "form-control user-search__field" %>
+        <%= f.submit "検索", class: "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row">
     <table class="table">
       <thead>
@@ -14,20 +31,20 @@
       </thead>
       <tbody>
         <% @users.each do |user| %>
-          <tr>
-            <td><%= attachment_image_tag user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
-            <td><%= user.name %></td>
-            <td><%= user.name_kana %></td>
-            <td><%= user.nickname %></td>
-            <td>
-              <% case user.status when 0 %>
-                <span>制限なし</span>
-              <% when 1 %>
-                <span class="badge" style="background: orange;">コメント制限中</span>
-              <% end %>
-            </td>
-            <td><%= link_to "会員情報・ステータス変更", edit_admins_user_path(user), class: "btn btn-info" %></td>
-          </tr>
+        <tr>
+          <td><%= attachment_image_tag user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></td>
+          <td><%= user.name %></td>
+          <td><%= user.name_kana %></td>
+          <td><%= user.nickname %></td>
+          <td>
+            <% case user.status when 0 %>
+            <span>制限なし</span>
+            <% when 1 %>
+            <span class="badge" style="background: orange;">コメント制限中</span>
+            <% end %>
+          </td>
+          <td><%= link_to "会員情報・ステータス変更", edit_admins_user_path(user), class: "btn btn-info" %></td>
+        </tr>
         <% end %>
       </tbody>
     </table>

@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HouseholdChecker</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>HouseholdChecker</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
-    <div class="container-fluid">
-      <footer class="row">
-        <p class="footer-text">portfolio＿demo</p>
-      </footer>
-    </div>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  </body>
+<body>
+  <%= render 'layouts/header' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</body>
+
 </html>

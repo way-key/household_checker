@@ -3,7 +3,7 @@ class Users::HomesController < ApplicationController
 
   end
 
-  def about
+  def guide
 
   end
 

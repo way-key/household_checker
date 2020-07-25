@@ -2,12 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 共通
 .title-create {
-  margin-bottom: 20px;
+  margin: 20px auto;
+
+  &__field {
+    margin: 0 20px;
+  }
 }
 
+// show
 .far {
   color: green;
   font-size: 25px;
   margin-top: 13px;
+}
+
+.th-width {
+  width: 100px;
 }

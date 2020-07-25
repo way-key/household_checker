@@ -1,9 +1,8 @@
 class Admins::GenresController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_genres, only: [:index, :create]
 
   def index
-    @genres = Genre.page(params[:page]).per(20)
-    @new_genre = Genre.new
   end
 
   def create
@@ -11,8 +10,6 @@ class Admins::GenresController < ApplicationController
     if genre.save
       redirect_to admins_genres_path
     else
-      @genres = Genre.page(params[:page]).per(20)
-      @new_genre = Genre.new
       flash.now[:alert] = 'ジャンル名が空欄です'
       render "index"
     end
@@ -38,6 +35,12 @@ class Admins::GenresController < ApplicationController
 
   def genre_params
     params.require(:genre).permit(:title, :status)
+  end
+
+  def set_genres
+    @q = Genre.ransack(params[:q])
+    @genres = @q.result(distinct: true).page(params[:page]).per(20)
+    @new_genre = Genre.new
   end
 
 end

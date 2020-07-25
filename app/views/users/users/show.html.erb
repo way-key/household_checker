@@ -5,7 +5,7 @@
 
   <%= render 'users/users/profile_form', user: @user %>
 
-  <div class="row" style="margin: 30px;">
+  <div class="row">
     <div class="mx-auto">
       <%= link_to "プロフィール編集", edit_users_user_path(@user), class: "btn btn-primary" %>
       <%= link_to "パスワードを変更", edit_user_registration_path, class: "btn btn-primary", style: "margin: 25px;" %>

@@ -1,39 +1,66 @@
-  <div class="col-sm-3">
-    <div class="seach-box">
-      <h3 class="search-title">商品検索</h3>
-      <%= search_form_for(@q, url:users_products_search_path) do |f| %>
-        <div class="form-group">
-          <%= f.label :name, "商品名" %>
-          <%= f.search_field :name_cont, class:"form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :jan_code, "バーコード" %>
-          <%= f.search_field :jan_code_cont, class:"form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :genre_id, "ジャンル" %>
-          <%= f.select :genre_id_eq, Genre.where(status: true).map{|genre| [genre.title, genre.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control" %>
-          <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
-        </div>
-        <div class="product-button">
-          <%= f.submit "検索", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+<div class="col-lg-3">
+  <%# パソコン画面での表示内容 %>
+  <div class="pc-search">
+    <h3 class="search-title">商品検索</h3>
+    <%= search_form_for(@q, url: users_products_path) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "商品名" %>
+      <%= f.search_field :name_cont, class:"form-control" %>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="search-title">ジャンル検索</h3>
-      </div>
-      <ul class="list-group">
-      <% @genres.each do |genre| %>
-          <li class="list-group-item" style="text-align: center;">
-          <%= link_to genre.title, users_products_search_path(q: { genre_id_eq: genre.id }) %>
-          <%# q:にジャンルidを持たせ、searchメソッドへ遷移 %>
-          </li>
-      <% end %>
-      </ul>
+    <div class="form-group">
+      <%= f.label :jan_code, "JANコード" %>
+      <%= f.search_field :jan_code_cont, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :genre_id, "ジャンル" %>
+      <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
+      <%= f.select :genre_id_eq, @genres.map{|genre| [genre.title, genre.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control" %>
     </div>
     <div class="product-button">
-      <%= link_to "商品の新規作成", new_users_product_path, class: "btn btn-success" %>
+      <%= f.hidden_field :status_eq, value: true %>
+      <%= f.submit "検索", class: "btn btn-primary w-50" %>
+    </div>
+    <% end %>
+    <div class="product-button">
+      <%# 下記ボタンはステータス問わず全て表示 %>
+      <%= link_to "作成商品のリスト", users_products_path(q: { user_id_eq: current_user.id }), class: "btn btn-info w-100" %>
+    </div>
+    <div class="product-button">
+      <%= link_to "商品の新規作成", new_users_product_path, class: "btn btn-success w-100" %>
     </div>
   </div>
+
+  <%# タブレット画面以下での表示内容 %>
+  <div class="tablet-search">
+    <nav class="navbar fixed-bottom navbar-light bg-light container">
+      <div class="btn btn-info" data-toggle="collapse" data-target="#navmenu1" aria-controls="navmenu1">商品検索
+      </div>
+      <div class="collapse navbar-collapse" id="navmenu1">
+        <div class="navbar-nav">
+          <%= search_form_for(@q, url: users_products_path) do |f| %>
+          <div class="form-group">
+            <%= f.label :name, "商品名" %>
+            <%= f.search_field :name_cont, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :jan_code, "JANコード" %>
+            <%= f.search_field :jan_code_cont, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :genre_id, "ジャンル" %>
+            <%# mapメソッドで順に並べ、選択したタイトルをidに変換 %>
+            <%= f.select :genre_id_eq, @genres.map{|genre| [genre.title, genre.id]}, {include_blank: '選択してください'}, selected: false, class:"form-control" %>
+          </div>
+          <div class="product-button">
+            <%= f.hidden_field :status_eq, value: true %>
+            <%= f.submit "検索", class: "btn btn-primary w-50" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to "作成商品のリスト", users_products_path(q: { user_id_eq: current_user.id }), class: "btn btn-info" %>
+      <%= link_to "商品の新規作成", new_users_product_path, class: "btn btn-success" %>
+    </nav>
+  </div>
+
+</div>

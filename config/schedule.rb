@@ -16,10 +16,9 @@ set :environment, rails_env
 #   rake "some:great:rake:task"
 # end
 #
-every 1.minutes do
-# every 1.days, at: '9:00 am' do
+every 1.days, at: '9:00 am' do
 
-  runner "NotificationMailer.send_when_test"
+  runner "NotificationMailer.send_when_check.deliver"
 end
 #   runner "AnotherModel.prune_old_records"
 # end

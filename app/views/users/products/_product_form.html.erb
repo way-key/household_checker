@@ -1,13 +1,13 @@
+<%= form_for [:users, product] do |f| %>
 <div class="row">
-  <div class="col-xs-6">
-    <%= form_for [:users, product] do |f| %>
-      <%= attachment_image_tag product, :image, :fill, 400, 400, fallback: "no_image.jpg", size: '400x400' %><br>
-      <%= f.attachment_field :image %>
+  <div class="col-lg-6">
+    <%= attachment_image_tag product, :image, :fill, 400, 400, fallback: "no_image.jpg", size: '400x400', id: "img", class: "d-block mx-auto" %><br>
+    <%= f.attachment_field :image, id:"myfile", class: "d-block mx-auto" %>
   </div>
-  <div class="col-sm-5">
+  <div class="col-lg-6">
     <div class="product-create">
       <div class="form-group">
-        <%= f.label :name, "商品名" %>
+        <%= f.label :name, "商品名(※必須)" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
       <div class="form-group">
@@ -15,17 +15,21 @@
         <%= f.text_area :introduction, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :genre_id, "ジャンル" %>
-        <%= f.collection_select :genre_id, Genre.all, :id, :title, {include_blank: '--選択してください--'}, class: "form-control" %>
+        <%= f.label :genre_id, "ジャンル(※必須)" %>
+        <%= f.collection_select :genre_id, @genres, :id, :title, {include_blank: '--選択してください--'}, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :jan_code, "JANコード" %>
         <%= f.text_field :jan_code, class: "form-control" %>
       </div>
+      <div class="form-group">
+        <%= f.label :status, "表示ステータス" %>
+        <%= f.select :status, [["表示中", true],["非表示", false]], {}, {class: "form-control"} %>
+      </div>
       <div class="product-button">
-        <%= f.submit "実行", class: "btn btn-primary" %>
-      <div>
-      <% end %>
+        <%= f.submit "実行", class: "btn btn-primary w-50" %>
+      </div>
     </div>
   </div>
 </div>
+<% end %>

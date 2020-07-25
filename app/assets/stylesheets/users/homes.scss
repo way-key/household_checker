@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// top
 .main-visual {
   height: 600px;
   width: 100%;
@@ -14,10 +15,15 @@
     width: 50%;
     height: 100%;
     margin-left: 20px;
-    background-color: rgba( 0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     padding-top: 220px;
   }
+}
+
+.top-text {
+  color: #fff;
+  margin: 20px auto 50px;
 }
 
 .sub-visual1 {
@@ -32,7 +38,7 @@
     width: 40%;
     height: 100%;
     margin-left: auto;
-    background-color: rgba( 0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     padding-top: 200px;
   }
@@ -49,7 +55,7 @@
   &__text {
     width: 40%;
     height: 100%;
-    background-color: rgba( 0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     padding-top: 200px;
   }
@@ -78,7 +84,48 @@
   }
 }
 
-.top-text {
-  color: #fff;
-  margin-top: 20px;
+// guide
+
+.guide-title {
+  margin: 50px 0 10px;
+}
+
+.guide-image1 {
+  height: 600px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-image: image-url("buy_list_guide1.png");
+  background-size: cover;
+  background-position: top center;
+  border: 1px solid #000000;
+}
+
+.guide-image2 {
+  height: 600px;
+  width: 100%;
+  margin: 50px 0 20px;
+  background-image: image-url("buy_list_guide2.png");
+  background-size: cover;
+  background-position: top center;
+  border: 1px solid #000000;
+}
+
+.guide-image3 {
+  height: 500px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-image: image-url("product_guide1.png");
+  background-size: cover;
+  background-position: top center;
+  border: 1px solid #000000;
+}
+
+.guide-image4 {
+  height: 500px;
+  width: 100%;
+  margin: 50px 0 20px;
+  background-image: image-url("product_guide2.png");
+  background-size: cover;
+  background-position: top center;
+  border: 1px solid #000000;
 }

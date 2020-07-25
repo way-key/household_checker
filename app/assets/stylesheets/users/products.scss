@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// _search_list
 .search-title {
   text-align: center;
   margin: 20px 0;
@@ -12,18 +13,24 @@
   margin-top: 30px;
 }
 
+// index
 .product-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 
   &__item {
-    width: 250px;
-    border: 1px solid #cacaca;
     margin: 5px;
+    width: 242px;
   }
 }
 
+.tablet-search {
+  display: none;
+}
+
+// show
 .product-name {
   padding-bottom: 20px;
 }
@@ -47,8 +54,6 @@
 }
 
 .review-list {
-
-
   &__user {
     padding-top: 10px;
     border-top: 1px solid #adadad;
@@ -65,9 +70,20 @@
   &__comment {
     padding-bottom: 10px;
   }
-
 }
 
+// _product_form
 .product-create {
   margin: 0 20px 0 20px;
+}
+
+// レスポンシブ対応
+@media screen and (max-width: 991px) {
+  .pc-search {
+    display: none;
+  }
+
+  .tablet-search {
+    display: block;
+  }
 }

@@ -6,49 +6,23 @@
   <%= render 'users/users/profile_form', user: @user %>
 
   <div class="row">
-    <div class="col-sm-3 offset-9">
+    <div class="authority-form">
+      <%= form_with model: @user, url: admins_user_path, local: true do |f| %>
       <div class="form-inline">
-        <%= form_with model: @user, url: admins_user_path, local: true do |f| %>
-        <%= f.select :status, [["制限なし",0],["コメント制限",1]], {}, class: "form-control" %>
+        <%= f.label :status, "コメント権限：" %>
+        <%= f.select :status, [["制限なし",0],["コメント制限",1]], {}, class: "form-control authority-form__select" %>
         <%= f.submit "更新", class: "btn btn-primary"%>
-        <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 
   <div class="row">
-    <h3 class="admin-title__sub">コメント一覧</h3>
-  </div>
-
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th style="width: 15%;">作成日</th>
-          <th style="width: 15%;">スコア</th>
-          <th>コメント</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @reviews.each do |review| %>
-        <tr>
-          <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
-          <td id="star-rate-<%= review.id %>"></td>
-          <script>
-            $('#star-rate-<%= review.id %>').raty({
-              size: 36,
-              starOff: '<%= asset_path('star - off.png ') %>',
-              starOn: '<%= asset_path('star - on.png ') %>',
-              starHalf: '<%= asset_path('star - half.png ') %>',
-              readOnly: true,
-              score: < %= review.score % > ,
-            });
-          </script>
-          <td><%= review.comment %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="mx-auto">
+      <%# レビュー一覧にはparamsを持たせて遷移させる %>
+      <%= link_to "会員レビュー一覧", admins_reviews_path(user_id: @user.id), class: "btn btn-primary create-reviews" %>
+      <%= link_to "会員作成商品一覧", admins_products_search_path(@user), class: "btn btn-primary create-products" %>
+    </div>
   </div>
 
   <%= paginate @reviews, class: "paginate" %>

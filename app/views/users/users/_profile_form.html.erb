@@ -1,10 +1,9 @@
   <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-4">
-      <%= attachment_image_tag user, :image, :fill, 300, 300, fallback: "no_image.jpg", size: '300x300' %>
+    <div class="col-sm-6 mx-auto">
+      <%= attachment_image_tag user, :image, :fill, 300, 300, fallback: "no_image.jpg", size: '300x300', class: "aaaa" %>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-6 mx-auto">
       <table class="table table-bordered">
         <tr>
           <th>名前</th>

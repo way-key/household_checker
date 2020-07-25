@@ -19,8 +19,8 @@ class Users::BuyListProductsController < ApplicationController
     new_buy_list_product_params = buy_list_product_params
     new_buy_list_product_params[:dead_line] = update_dead_line
     @buy_list_product.update(new_buy_list_product_params)
-    redirect_back(fallback_location: root_path)
     # 元のページへリダイレクト
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

@@ -1,3 +1,29 @@
 // Place all the styles related to the admin::users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// index
+.user-search {
+  margin: 0 auto 40px;
+
+  &__field {
+    margin-right: 10px;
+  }
+}
+
+// edit
+.authority-form {
+  margin: 20px auto;
+
+  &__select {
+    margin: 0 20px;
+  }
+}
+
+.create-reviews {
+  margin: 20px 30px 0 0;
+}
+
+.create-products {
+  margin-top: 20px;
+}

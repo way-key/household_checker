@@ -6,31 +6,30 @@
   <%= form_for [:users, @user] do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
   <div class="row">
-    <div class="col-sm-2"></div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <%= attachment_image_tag @user, :image, :fill, 300, 300, fallback: "no_image.jpg", size: '300x300' %><br>
-          <%= f.attachment_field :image %>
-        </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= attachment_image_tag @user, :image, :fill, 300, 300, fallback: "no_image.jpg", size: '300x300', id: "img" %><br>
+        <%= f.attachment_field :image, id: "myfile" %>
       </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <%= f.label :name, "名前" %>
-          <%= f.text_field :name, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :name_kana, "フリガナ" %>
-          <%= f.text_field :name_kana, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :nickname, "ニックネーム" %>
-          <%= f.text_field :nickname, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :email, "メールアドレス" %>
-          <%= f.text_field :email, class: "form-control" %>
-        </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
+      <div class="form-group">
+        <%= f.label :name_kana, "フリガナ（全角カタカナ）" %>
+        <%= f.text_field :name_kana, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :nickname, "ニックネーム" %>
+        <%= f.text_field :nickname, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
   <div class="row">

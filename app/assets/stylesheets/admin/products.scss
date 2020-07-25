@@ -1,3 +1,36 @@
 // Place all the styles related to the admin::products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// index
+.product-search {
+  margin: 0 auto 40px;
+
+  &__field {
+    margin: 0 20px;
+  }
+}
+
+.product-list {
+  margin: 0 auto;
+
+  &__name {
+    width: 400px;
+  }
+
+  &__genre {
+    width: 150px;
+  }
+
+  &__status {
+    width: 150px;
+  }
+}
+
+// edit
+.update-btn {
+  margin-top: 30px;
+}
+
+// search
+// class"user-page"はadmins/reviews.scssで設定
